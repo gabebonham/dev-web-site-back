@@ -56,3 +56,5 @@ app.use('/', (req, res, next) => {
 app.listen(port, () => {
 	console.log('port: 3001');
 });
+
+module.exports = app;
