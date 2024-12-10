@@ -18,32 +18,32 @@ model about {
   value     String
 }
 
-model blogs {
+model blog {
   id        Int     @id @default(autoincrement())
   title     String
   body   String
   imageName String
 }
 
-model competences {
+model competence {
   id        Int     @id @default(autoincrement())
   name     String
   rating   Int
 }
-model contacts {
+model contact {
   id        Int     @id @default(autoincrement())
   platformName     String
   platformUserPageLink   String
   email String
 }
-model projects {
+model project {
   id        Int     @id @default(autoincrement())
   name     String
   description   String
   link String
 }
 
-model messages {
+model message {
   id        Int     @id @default(autoincrement())
   email     String
   msg   String
@@ -52,7 +52,7 @@ model messages {
   isNew Boolean  @default(true)
 }
 
-model users {
+model user {
   id        Int     @id @default(autoincrement())
   userName     String @unique
   password   String
