@@ -17,12 +17,12 @@ exports.encrypt = encrypt;
 exports.hash = hash;
 const jose_1 = require("jose");
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const key = new TextEncoder().encode(process.env.JWT_KEY);
+const key = new TextEncoder().encode('process.env.JWT_KEY');
 function decrypt(session) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log(session);
-            const { payload } = yield (0, jose_1.jwtVerify)(session, key, {
+            const { payload } = yield (0, jose_1.jwtVerify)(session.session, key, {
                 algorithms: ['HS256'],
             });
             console.log(payload);

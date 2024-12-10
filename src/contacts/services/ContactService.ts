@@ -13,8 +13,8 @@ export async function getContactById(id) {
 export async function createContact(contact: Contact) {
 	await prisma.contacts.create({
 		data: {
-			platform_name: contact.platformName,
-			platform_user_page_link: contact.platformUserPageLink,
+			platformName: contact.platformName,
+			platformUserPageLink: contact.platformUserPageLink,
 			email: contact.email,
 		},
 	});

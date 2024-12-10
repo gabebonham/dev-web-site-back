@@ -47,6 +47,12 @@ app.use('/api/contacts', ContactsRouter_1.default);
 app.use('/api/competences', CompetencesRouter_1.default);
 app.use('/api/messages', MessageRouter_1.default);
 app.use('/login', AuthRouter_1.default);
+app.use('', (req, res, next) => {
+    res.sendStatus(403);
+});
+app.use('/', (req, res, next) => {
+    res.sendStatus(403);
+});
 app.listen(port, () => {
     console.log('port: 3001');
 });

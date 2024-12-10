@@ -29,8 +29,8 @@ function createContact(contact) {
     return __awaiter(this, void 0, void 0, function* () {
         yield prisma.contacts.create({
             data: {
-                platform_name: contact.platform_name,
-                platform_user_page_link: contact.platform_user_page_link,
+                platformName: contact.platformName,
+                platformUserPageLink: contact.platformUserPageLink,
                 email: contact.email,
             },
         });

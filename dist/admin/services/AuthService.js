@@ -38,7 +38,7 @@ function login(user) {
 }
 function verifyUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
-        const dbUser = yield prisma.user.findUnique({
+        const dbUser = yield prisma.users.findUnique({
             where: { userName: user.userName },
         });
         console.log(dbUser);
@@ -69,10 +69,8 @@ function authenticate(session) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log(session + 'ui');
-            const decryptedSession = yield (0, JWT_1.decrypt)(session.session);
-            const a = decryptedSession === null || decryptedSession === void 0 ? void 0 : decryptedSession.sub;
-            console.log(a + 'auth');
-            if (decryptedSession === null || decryptedSession === void 0 ? void 0 : decryptedSession.aud) {
+            const decryptedSession = yield (0, JWT_1.decrypt)(JSON.parse(session));
+            if (decryptedSession) {
                 return true;
             }
             else {
