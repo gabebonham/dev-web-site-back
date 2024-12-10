@@ -1,0 +1,38 @@
+import { PrismaClient } from '@prisma/client';
+import Blog from '../models/BlogModel';
+
+const prisma = new PrismaClient();
+
+export async function getAllBlogs() {
+	return await prisma.blogs.findMany();
+}
+
+export async function getBlogById(id: number) {
+	return await prisma.blogs.findUnique({
+		where: { id: id },
+	});
+}
+
+export async function createBlog(blog: Blog) {
+	await prisma.blogs.create({
+		data: {
+			title: blog.title,
+			body: blog.body,
+			imageName: blog.imageName,
+		},
+	});
+}
+
+export async function updateBlog(blog: Blog) {
+	console.log(blog);
+	await prisma.blogs.update({
+		where: {
+			id: blog.id,
+		},
+		data: blog,
+	});
+}
+
+export async function deleteBlogById(id: number) {
+	await prisma.blogs.delete({ where: { id: id } });
+}
