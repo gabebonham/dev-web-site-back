@@ -9,12 +9,7 @@
 	"routes": [
 		{
 			"src": "/(.*)",
-			"dest": "/"
+			"dest": "/api"
 		}
-	],
-
-	"env": {
-		"NODE_ENV": "production",
-		"DATABASE_URL": "postgresql://neondb_owner:foxK2qWyi6SE@ep-misty-shadow-a4ugmup4.us-east-1.aws.neon.tech/neondb?sslmode=require"
-	}
+	]
 }
