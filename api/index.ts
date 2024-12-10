@@ -13,7 +13,7 @@ import cors from 'cors';
 
 const app: Express = express();
 
-const port = 3001;
+const port = 3000;
 
 app.use(cookieParser());
 app.use(
