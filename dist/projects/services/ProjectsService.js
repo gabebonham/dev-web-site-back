@@ -28,7 +28,7 @@ function getProjectById(id) {
 }
 function createProject(project) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.project.create({
+        const s = yield prisma.project.create({
             data: {
                 name: project.name,
                 link: project.link,

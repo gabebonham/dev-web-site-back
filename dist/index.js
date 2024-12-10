@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const middlewareApi_1 = __importDefault(require("./middlewareApi"));
 const ProjectsRouter_1 = __importDefault(require("./projects/ProjectsRouter"));
 const BlogsRouter_1 = __importDefault(require("./blogs/BlogsRouter"));
 const AboutRouter_1 = __importDefault(require("./about/AboutRouter"));
@@ -23,22 +22,22 @@ app.use((0, cors_1.default)({
     credentials: true,
 }));
 app.use(express_1.default.json());
-app.use('/api/*', (req, res, next) => {
-    if (req.method == 'POST') {
-        // Apply middleware to all methods except GET
-        return (0, middlewareApi_1.default)(req, res, next);
-    }
-    if (req.method == 'DELETE') {
-        // Apply middleware to all methods except GET
-        return (0, middlewareApi_1.default)(req, res, next);
-    }
-    if (req.method == 'PUT') {
-        // Apply middleware to all methods except GET
-        return (0, middlewareApi_1.default)(req, res, next);
-    }
-    // Skip middleware for GET requests
-    next();
-});
+// app.use('/api/*', (req, res, next) => {
+// 	if (req.method == 'POST') {
+// 		// Apply middleware to all methods except GET
+// 		return middleware(req, res, next);
+// 	}
+// 	if (req.method == 'DELETE') {
+// 		// Apply middleware to all methods except GET
+// 		return middleware(req, res, next);
+// 	}
+// 	if (req.method == 'PUT') {
+// 		// Apply middleware to all methods except GET
+// 		return middleware(req, res, next);
+// 	}
+// 	// Skip middleware for GET requests
+// 	next();
+// });
 app.use('/api/projects', ProjectsRouter_1.default);
 app.use('/api/blogs', BlogsRouter_1.default);
 app.use('/api/about', AboutRouter_1.default);
