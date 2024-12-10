@@ -4,15 +4,15 @@ import Competence from '../models/CompetenceModel';
 const prisma = new PrismaClient();
 
 export async function getAllCompetences() {
-	return await prisma.competences.findMany();
+	return await prisma.competence.findMany();
 }
 
 export async function getCompetenceById(id) {
-	return await prisma.competences.findUnique({ where: { id: id } });
+	return await prisma.competence.findUnique({ where: { id: id } });
 }
 
 export async function createCompetence(competence: Competence) {
-	await prisma.competences.create({
+	await prisma.competence.create({
 		data: {
 			name: competence.name,
 			rating: competence.rating,
@@ -20,5 +20,5 @@ export async function createCompetence(competence: Competence) {
 	});
 }
 export async function deleteCompetenceById(id) {
-	await prisma.competences.delete({ where: { id: id } });
+	await prisma.competence.delete({ where: { id: id } });
 }

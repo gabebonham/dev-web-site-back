@@ -13,37 +13,37 @@ datasource db {
   url  	    = env("DATABASE_URL")
 }
 
-model about {
+model About {
   id        Int     @id @default(autoincrement())
   value     String
 }
 
-model blog {
+model Blog {
   id        Int     @id @default(autoincrement())
   title     String
   body   String
   imageName String
 }
 
-model competence {
+model Competence {
   id        Int     @id @default(autoincrement())
   name     String
   rating   Int
 }
-model contact {
+model Contact {
   id        Int     @id @default(autoincrement())
   platformName     String
   platformUserPageLink   String
   email String
 }
-model project {
+model Project {
   id        Int     @id @default(autoincrement())
   name     String
   description   String
   link String
 }
 
-model message {
+model Message {
   id        Int     @id @default(autoincrement())
   email     String
   msg   String
@@ -52,7 +52,7 @@ model message {
   isNew Boolean  @default(true)
 }
 
-model user {
+model User {
   id        Int     @id @default(autoincrement())
   userName     String @unique
   password   String

@@ -18,17 +18,17 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function getAllMessages() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.messages.findMany();
+        return yield prisma.message.findMany();
     });
 }
 function getMessageById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.messages.findUnique({ where: { id: id } });
+        return yield prisma.message.findUnique({ where: { id: id } });
     });
 }
 function storeMessage(message) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.messages.create({
+        yield prisma.message.create({
             data: {
                 msg: message.msg,
                 email: message.email,
@@ -39,14 +39,14 @@ function storeMessage(message) {
 }
 function deleteMessageById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.messages.delete({ where: { id: id } });
+        yield prisma.message.delete({ where: { id: id } });
     });
 }
 function updateMessage(id) {
     return __awaiter(this, void 0, void 0, function* () {
         const message = (yield getMessageById(id));
         message.isNew = false;
-        yield prisma.messages.update({
+        yield prisma.message.update({
             where: { id: id },
             data: message,
         });

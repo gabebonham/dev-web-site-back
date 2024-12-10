@@ -18,17 +18,17 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function getAllProjects() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.projects.findMany();
+        return yield prisma.project.findMany();
     });
 }
 function getProjectById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.projects.findUnique({ where: { id: id } });
+        return yield prisma.project.findUnique({ where: { id: id } });
     });
 }
 function createProject(project) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.projects.create({
+        yield prisma.project.create({
             data: {
                 name: project.name,
                 link: project.link,
@@ -39,7 +39,7 @@ function createProject(project) {
 }
 function updateProject(project) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.projects.update({
+        yield prisma.project.update({
             where: { id: project.id },
             data: project,
         });
@@ -47,6 +47,6 @@ function updateProject(project) {
 }
 function deleteProjectById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.projects.delete({ where: { id: id } });
+        yield prisma.project.delete({ where: { id: id } });
     });
 }

@@ -4,17 +4,17 @@ import Blog from '../models/BlogModel';
 const prisma = new PrismaClient();
 
 export async function getAllBlogs() {
-	return await prisma.blogs.findMany();
+	return await prisma.blog.findMany();
 }
 
 export async function getBlogById(id: number) {
-	return await prisma.blogs.findUnique({
+	return await prisma.blog.findUnique({
 		where: { id: id },
 	});
 }
 
 export async function createBlog(blog: Blog) {
-	await prisma.blogs.create({
+	await prisma.blog.create({
 		data: {
 			title: blog.title,
 			body: blog.body,
@@ -25,7 +25,7 @@ export async function createBlog(blog: Blog) {
 
 export async function updateBlog(blog: Blog) {
 	console.log(blog);
-	await prisma.blogs.update({
+	await prisma.blog.update({
 		where: {
 			id: blog.id,
 		},
@@ -34,5 +34,5 @@ export async function updateBlog(blog: Blog) {
 }
 
 export async function deleteBlogById(id: number) {
-	await prisma.blogs.delete({ where: { id: id } });
+	await prisma.blog.delete({ where: { id: id } });
 }

@@ -5,15 +5,15 @@ import Message from '../models/MessageModel';
 const prisma = new PrismaClient();
 
 export async function getAllMessages() {
-	return await prisma.messages.findMany();
+	return await prisma.message.findMany();
 }
 
 export async function getMessageById(id) {
-	return await prisma.messages.findUnique({ where: { id: id } });
+	return await prisma.message.findUnique({ where: { id: id } });
 }
 
 export async function storeMessage(message) {
-	await prisma.messages.create({
+	await prisma.message.create({
 		data: {
 			msg: message.msg,
 			email: message.email,
@@ -23,12 +23,12 @@ export async function storeMessage(message) {
 }
 
 export async function deleteMessageById(id) {
-	await prisma.messages.delete({ where: { id: id } });
+	await prisma.message.delete({ where: { id: id } });
 }
 export async function updateMessage(id) {
 	const message = (await getMessageById(id)) as Message;
 	message.isNew = false;
-	await prisma.messages.update({
+	await prisma.message.update({
 		where: { id: id },
 		data: message,
 	});

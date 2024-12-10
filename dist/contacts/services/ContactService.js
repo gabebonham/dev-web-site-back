@@ -17,17 +17,17 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function getAllContacts() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.contacts.findMany();
+        return yield prisma.contact.findMany();
     });
 }
 function getContactById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.contacts.findUnique({ where: { id: id } });
+        return yield prisma.contact.findUnique({ where: { id: id } });
     });
 }
 function createContact(contact) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.contacts.create({
+        yield prisma.contact.create({
             data: {
                 platformName: contact.platformName,
                 platformUserPageLink: contact.platformUserPageLink,
@@ -38,6 +38,6 @@ function createContact(contact) {
 }
 function deleteContactById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.contacts.delete({ where: { id: id } });
+        yield prisma.contact.delete({ where: { id: id } });
     });
 }

@@ -18,19 +18,19 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function getAllBlogs() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.blogs.findMany();
+        return yield prisma.blog.findMany();
     });
 }
 function getBlogById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.blogs.findUnique({
+        return yield prisma.blog.findUnique({
             where: { id: id },
         });
     });
 }
 function createBlog(blog) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.blogs.create({
+        yield prisma.blog.create({
             data: {
                 title: blog.title,
                 body: blog.body,
@@ -42,7 +42,7 @@ function createBlog(blog) {
 function updateBlog(blog) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(blog);
-        yield prisma.blogs.update({
+        yield prisma.blog.update({
             where: {
                 id: blog.id,
             },
@@ -52,6 +52,6 @@ function updateBlog(blog) {
 }
 function deleteBlogById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.blogs.delete({ where: { id: id } });
+        yield prisma.blog.delete({ where: { id: id } });
     });
 }

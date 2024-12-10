@@ -38,7 +38,7 @@ function login(user) {
 }
 function verifyUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
-        const dbUser = yield prisma.users.findUnique({
+        const dbUser = yield prisma.user.findUnique({
             where: { userName: user.userName },
         });
         console.log(dbUser);

@@ -17,17 +17,17 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 function getAllCompetences() {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.competences.findMany();
+        return yield prisma.competence.findMany();
     });
 }
 function getCompetenceById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield prisma.competences.findUnique({ where: { id: id } });
+        return yield prisma.competence.findUnique({ where: { id: id } });
     });
 }
 function createCompetence(competence) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.competences.create({
+        yield prisma.competence.create({
             data: {
                 name: competence.name,
                 rating: competence.rating,
@@ -37,6 +37,6 @@ function createCompetence(competence) {
 }
 function deleteCompetenceById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield prisma.competences.delete({ where: { id: id } });
+        yield prisma.competence.delete({ where: { id: id } });
     });
 }
