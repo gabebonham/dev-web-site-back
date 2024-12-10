@@ -11,6 +11,7 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
+	"dist": "dist",
 	"dependencies": {
 		"@prisma/client": "^6.0.0",
 		"@types/express-serve-static-core": "^5.0.2",
