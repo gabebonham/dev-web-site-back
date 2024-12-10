@@ -24,22 +24,22 @@ app.use(
 	}),
 );
 app.use(express.json());
-app.use('/api/*', (req, res, next) => {
-	if (req.method == 'POST') {
-		// Apply middleware to all methods except GET
-		return middleware(req, res, next);
-	}
-	if (req.method == 'DELETE') {
-		// Apply middleware to all methods except GET
-		return middleware(req, res, next);
-	}
-	if (req.method == 'PUT') {
-		// Apply middleware to all methods except GET
-		return middleware(req, res, next);
-	}
-	// Skip middleware for GET requests
-	next();
-});
+// app.use('/api/*', (req, res, next) => {
+// 	if (req.method == 'POST') {
+// 		// Apply middleware to all methods except GET
+// 		return middleware(req, res, next);
+// 	}
+// 	if (req.method == 'DELETE') {
+// 		// Apply middleware to all methods except GET
+// 		return middleware(req, res, next);
+// 	}
+// 	if (req.method == 'PUT') {
+// 		// Apply middleware to all methods except GET
+// 		return middleware(req, res, next);
+// 	}
+// 	// Skip middleware for GET requests
+// 	next();
+// });
 app.use('/api/projects', projectsRouter);
 app.use('/api/blogs', blogsRouter);
 app.use('/api/about', aboutRouter);
@@ -53,6 +53,6 @@ app.use('', (req, res, next) => {
 app.use('/', (req, res, next) => {
 	res.sendStatus(403);
 });
-app.listen(() => {
+app.listen(port, () => {
 	console.log('port: 3001');
 });

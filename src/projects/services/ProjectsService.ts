@@ -12,7 +12,7 @@ export async function getProjectById(id: number) {
 }
 
 export async function createProject(project: Project) {
-	await prisma.project.create({
+	const s = await prisma.project.create({
 		data: {
 			name: project.name,
 			link: project.link,
