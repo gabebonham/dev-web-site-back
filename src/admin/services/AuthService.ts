@@ -23,7 +23,7 @@ export async function login(user) {
 	return null;
 }
 export async function verifyUser(user) {
-	const dbUser = await prisma.user.findUnique({
+	const dbUser = await prisma.users.findUnique({
 		where: { userName: user.userName },
 	});
 	console.log(dbUser);
