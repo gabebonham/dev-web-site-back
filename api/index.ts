@@ -49,9 +49,6 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.use('', async (req, res, next) => {
-	res.redirect('/home');
-});
 app.listen(port, () => {
 	console.log('port: 3000');
 });
