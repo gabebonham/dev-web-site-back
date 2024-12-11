@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from 'jose';
 import bcrypt from 'bcrypt';
 
-const key = new TextEncoder().encode('process.env.JWT_KEY');
+const key = new TextEncoder().encode(process.env.JWT_KEY);
 
 export async function decrypt(session) {
 	try {
