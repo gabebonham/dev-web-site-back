@@ -19,6 +19,7 @@ const port = 3000;
 app.use(cookieParser());
 app.use(
 	cors({
+		origin: 'grote.com.br',
 		methods: ['GET', 'POST', 'PUT', 'DELETE'],
 		allowedHeaders: ['Content-Type'],
 		credentials: true,
