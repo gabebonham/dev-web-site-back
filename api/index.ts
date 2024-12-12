@@ -49,7 +49,7 @@ app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
 app.listen(3001, () => {
-	console.log('port: 3001');
+	console.log(process.env.FRONT_URL);
 });
 
 module.exports = app;
