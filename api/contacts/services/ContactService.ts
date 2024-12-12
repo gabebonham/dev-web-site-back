@@ -10,7 +10,7 @@ export async function getContactById(id) {
 	return await prisma.contact.findUnique({ where: { id: id } });
 }
 
-export async function createContact(contact: Contact) {
+export async function createContact(contact) {
 	await prisma.contact.create({
 		data: {
 			platformName: contact.platformName,
