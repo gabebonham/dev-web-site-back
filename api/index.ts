@@ -14,12 +14,12 @@ import { hash } from './admin/lib/JWT';
 
 const app: Express = express();
 
-const port = 3000;
+const port = 3001;
 
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: 'grote.com.br',
+		origin: process.env.FRONT_URL,
 		methods: ['GET', 'POST', 'PUT', 'DELETE'],
 		allowedHeaders: ['Content-Type'],
 		credentials: true,
@@ -51,7 +51,7 @@ app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
 app.listen(port, () => {
-	console.log('port: 3000');
+	console.log('port: 3001');
 });
 
 module.exports = app;
