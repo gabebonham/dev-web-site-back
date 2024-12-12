@@ -49,7 +49,7 @@ app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
 app.listen(3000, () => {
-	console.log(process.env.FRONT_URL);
+	console.log('on');
 });
 
 module.exports = app;
