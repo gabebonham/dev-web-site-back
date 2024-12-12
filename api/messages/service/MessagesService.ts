@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { Resend } from 'resend';
 import Message from '../models/MessageModel';
 
 const prisma = new PrismaClient();
