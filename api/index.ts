@@ -14,8 +14,6 @@ import { hash } from './admin/lib/JWT';
 
 const app: Express = express();
 
-const port = 3001;
-
 app.use(cookieParser());
 app.use(
 	cors({
@@ -50,7 +48,7 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.listen(port, () => {
+app.listen(() => {
 	console.log('port: 3001');
 });
 
