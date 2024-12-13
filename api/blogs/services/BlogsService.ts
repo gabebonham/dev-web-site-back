@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import Blog from '../models/BlogModel';
-
-const prisma = new PrismaClient();
+import prisma from '../../db/PrismaDb';
 
 export async function getAllBlogs() {
 	return await prisma.blog.findMany();

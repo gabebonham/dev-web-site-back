@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import Message from '../models/MessageModel';
-
-const prisma = new PrismaClient();
+import prisma from '../../db/PrismaDb';
 
 export async function getAllMessages() {
 	return await prisma.message.findMany();

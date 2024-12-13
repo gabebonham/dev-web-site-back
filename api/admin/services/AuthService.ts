@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { decrypt, encrypt, hash } from '../lib/JWT';
 import bcrypt from 'bcrypt';
+import prisma from '../../db/PrismaDb';
 
-const prisma = new PrismaClient();
 const cookie = {
 	name: 'session',
 	options: { httpOnly: true, secure: true, sameSite: 'lax', path: '/' },
