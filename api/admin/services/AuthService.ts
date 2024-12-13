@@ -19,8 +19,9 @@ export async function login(user) {
 			...cookie.options,
 			expires,
 		};
+	} else {
+		return false;
 	}
-	return null;
 }
 export async function verifyUser(user) {
 	const dbUser = await prisma.user.findUnique({
@@ -31,16 +32,9 @@ export async function verifyUser(user) {
 }
 
 async function compareUsers(incomingUser, dbUser) {
-	if (dbUser) {
-		const a = bcrypt.compare(
-			incomingUser.password,
-			dbUser.password,
-		);
-		console.log(await hash(incomingUser.password));
-		return a;
-	} else {
-		return false;
-	}
+	const a = bcrypt.compare(incomingUser.password, dbUser.password);
+	console.log(await hash(incomingUser.password));
+	return a;
 }
 
 export async function createSession(user, expires) {
@@ -53,12 +47,8 @@ export async function createSession(user, expires) {
 export async function authenticate(session) {
 	try {
 		console.log(session + 'ui');
-		const decryptedSession = await decrypt(JSON.parse(session));
-		if (decryptedSession) {
-			return true;
-		} else {
-			return false;
-		}
+		const decryptedSession = await decrypt(session);
+		return decryptedSession;
 	} catch (e) {
 		return false;
 	}

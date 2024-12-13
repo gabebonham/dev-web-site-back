@@ -4,8 +4,9 @@ import cookieParser from 'cookie-parser';
 
 const middleware = async (req: Request, res: Response, next: NextFunction) => {
 	const session = await req.cookies['session'];
-	console.log(session);
-	if (await authenticateController(session)) {
+	console.log(session + 'mid');
+	const isAuthorized = await authenticateController(session);
+	if (isAuthorized) {
 		next();
 	} else {
 		res.sendStatus(403);
