@@ -48,8 +48,8 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.listen(3001, () => {
-	console.log('on');
+app.listen(() => {
+	console.log('onn');
 });
 
 module.exports = app;
