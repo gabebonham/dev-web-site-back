@@ -49,7 +49,7 @@ app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
 app.listen(3001, '::', () => {
-	console.log(process.env.JWT_KEY);
+	console.log('on');
 });
 
 module.exports = app;
