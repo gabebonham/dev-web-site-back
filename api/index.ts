@@ -7,7 +7,7 @@ import contactsRouter from './contacts/ContactsRouter';
 import competencesRouter from './competences/CompetencesRouter';
 import messageRouter from './messages/MessageRouter';
 import authRouter from './admin/AuthRouter';
-
+import 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { hash } from './admin/lib/JWT';
@@ -48,8 +48,8 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.listen(3000, '::', () => {
-	console.log('onn');
+app.listen(3001, '::', () => {
+	console.log(process.env.JWT_KEY);
 });
 
 module.exports = app;

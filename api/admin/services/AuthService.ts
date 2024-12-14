@@ -45,11 +45,7 @@ export async function createSession(user, expires) {
 }
 
 export async function authenticate(session) {
-	try {
-		console.log(session + 'ui');
-		const decryptedSession = await decrypt(session);
-		return decryptedSession;
-	} catch (e) {
-		return false;
-	}
+	console.log('service' + session);
+	const decryptedSession = await decrypt(session);
+	return decryptedSession;
 }
