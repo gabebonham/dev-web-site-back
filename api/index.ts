@@ -7,7 +7,7 @@ import contactsRouter from './contacts/ContactsRouter';
 import competencesRouter from './competences/CompetencesRouter';
 import messageRouter from './messages/MessageRouter';
 import authRouter from './admin/AuthRouter';
-import 'dotenv';
+
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { hash } from './admin/lib/JWT';
