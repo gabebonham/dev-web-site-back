@@ -1,6 +1,6 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "pnpm prisma generate && pnpm run build"
+buildCommand = "pnpm prisma generate"
 
 [build.nixpacksPlan.phases.install]
 cmds = ["pnpm install --no-frozen-lockfile && echo bunda"]
