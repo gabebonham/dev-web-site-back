@@ -19,7 +19,7 @@ const app: Express = express();
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: true,
+		origin: 'http://dev-web-site-front.railway.internal',
 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 		allowedHeaders: ['Content-Type'],
 		credentials: true,
