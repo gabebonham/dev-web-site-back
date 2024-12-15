@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"private": false,
+	"packageManager": "pnpm@9.13.0",
 	"engines": {
 		"node": "20.x"
 	},
