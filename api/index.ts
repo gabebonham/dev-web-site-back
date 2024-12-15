@@ -1,3 +1,5 @@
+require('dotenv').config();
+import 'dotenv';
 import express, { Express, Request, Response } from 'express';
 import middleware from './middlewareApi';
 import projectsRouter from './projects/ProjectsRouter';
@@ -48,7 +50,7 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.listen(3000, '::', () => {
+app.listen(3001, '::', () => {
 	console.log('on');
 });
 

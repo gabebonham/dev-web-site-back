@@ -1,8 +1,7 @@
-'use server';
-import { PrismaClient } from '@prisma/client';
 import prisma from '../../db/PrismaDb';
 
 export async function getAbout() {
+	console.log('asdf');
 	return await prisma.about.findUnique({
 		where: { id: 1 },
 	});

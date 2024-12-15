@@ -1,3 +1,5 @@
+require('dotenv').config();
+import 'dotenv';
 import { NextFunction, Request, Response } from 'express';
 import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';

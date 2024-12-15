@@ -1,38 +1,21 @@
-import { SignJWT, jwtVerify, jwtDecrypt, JWTDecryptGetKey } from 'jose';
 import bcrypt from 'bcrypt';
-import 'dotenv';
-
+import { jwtVerify, SignJWT } from 'jose';
 export async function decrypt(session) {
-	const p = process.env.JWT_KEY as string;
-	console.log(p);
-	const key = new TextEncoder().encode(p);
-	console.log(key);
-	const keyResolver: JWTDecryptGetKey = async (header, token) => {
-		return key; // Return the key for decryption
-	};
+	const key = new TextEncoder().encode('grote');
 	try {
 		console.log('decrypt');
-		const a = await jwtVerify(session, key, {
-			algorithms: ['HS256'],
-		});
-		console.log(a);
+		const a = await jwtVerify(session, key);
 		return true;
 	} catch (e) {
 		return false;
 	}
 }
 export async function encrypt(payload) {
-	const p = process.env.JWT_KEY as string;
-	console.log(p);
-	const key = new TextEncoder().encode(p);
-	console.log(key);
-	const keyResolver: JWTDecryptGetKey = async (header, token) => {
-		return key; // Return the key for decryption
-	};
+	const key = new TextEncoder().encode('grote');
 	return await new SignJWT(payload)
-		.setProtectedHeader({ alg: 'HS256' })
 		.setIssuedAt()
-		.setExpirationTime('1day')
+		.setExpirationTime('1h')
+		.setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
 		.sign(key);
 }
 

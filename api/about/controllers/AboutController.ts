@@ -3,6 +3,7 @@ import { getAbout, updateAbout } from '../services/AboutService';
 
 export async function getAboutController(req: Request, res: Response) {
 	const about = await getAbout();
+	console.log(about);
 	res.send(JSON.stringify({ about: about }));
 }
 
