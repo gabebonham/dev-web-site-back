@@ -5,13 +5,8 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
-const middleware = async (req: Request, res: Response, next: NextFunction) => {
-	const cookies = req.headers.cookie
-		? cookie.parse(req.headers.cookie)
-		: {};
-
-	// Access the 'session' cookie from the parsed object
-	const session = cookies.session;
+const middleware = async (req, res, next: NextFunction) => {
+	const session = getCookie(req.headers.cookie);
 
 	console.log('token recebido - ' + session);
 	const isAuthorized = await authenticateController(session);
@@ -23,3 +18,15 @@ const middleware = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export default middleware;
+
+function getCookie(value) {
+	const list = value.split(';');
+	console.log(list);
+	const listDict = list.map((i) => {
+		const newList = i.split('=');
+		return { key: newList[0], value: newList[1] };
+	});
+	const session = listDict.filter((i) => i.key == 'session')[0];
+	console.log(session.value);
+	return session.value;
+}

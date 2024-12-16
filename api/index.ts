@@ -15,7 +15,7 @@ import cors from 'cors';
 import { hash } from './admin/lib/JWT';
 
 const app: Express = express();
-
+app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
@@ -25,8 +25,8 @@ app.use(
 		credentials: true,
 	}),
 );
-app.use(express.json());
-app.use('/api/*', (req: Request, res: Response, next) => {
+
+app.use('/api/*', (req, res, next) => {
 	if (req.method == 'POST') {
 		// Apply middleware to all methods except GET
 		return middleware(req, res, next);

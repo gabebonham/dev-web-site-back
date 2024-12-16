@@ -12,7 +12,7 @@ export async function loginController(req: Request, res: Response) {
 	}
 }
 export async function authenticateController(session) {
-	console.log('suth controller');
+	console.log('auth controller');
 	const auth = await authenticate(session);
 	console.log('nops');
 	return auth;
