@@ -26,7 +26,7 @@ app.use(
 	}),
 );
 app.use(express.json());
-app.use('/api/*', (req, res, next) => {
+app.use('/api/*', (req: Request, res: Response, next) => {
 	if (req.method == 'POST') {
 		// Apply middleware to all methods except GET
 		return middleware(req, res, next);
