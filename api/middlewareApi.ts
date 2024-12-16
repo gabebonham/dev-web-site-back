@@ -6,9 +6,10 @@ import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
 const middleware = async (req, res, next: NextFunction) => {
-	const session = getCookie(req.headers.cookie);
+	console.log('token recebido - ' + req.headers.cookie);
+	const session = getCookie(await req.headers.cookie);
 
-	console.log('token recebido - ' + session);
+	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
 		next();
