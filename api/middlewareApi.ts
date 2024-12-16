@@ -5,7 +5,7 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 
 const middleware = async (req: Request, res: Response, next: NextFunction) => {
-	const session = await req.cookies.session;
+	const session = await req.cookies;
 	console.log('token recebido - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
