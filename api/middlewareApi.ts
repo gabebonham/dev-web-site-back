@@ -5,7 +5,7 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
-const middleware = async (req, res, next: NextFunction) => {
+const middleware = async (req, res: Response, next: NextFunction) => {
 	console.log('header ' + req.header);
 	console.log('token recebido - ' + req.headers.cookie);
 	const session = getCookie(await req.headers.cookie);
@@ -13,6 +13,13 @@ const middleware = async (req, res, next: NextFunction) => {
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
+		res.set(
+			'Access-Control-Allow-Origin',
+			'https://dev-web-site-front-production.up.railway.app',
+		); // Allow frontend domain
+		res.set('Access-Control-Allow-Credentials', 'true'); // Allow cookies
+
+		res.set('Accept', 'application/json');
 		next();
 	} else {
 		res.sendStatus(403);
