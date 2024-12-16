@@ -10,7 +10,7 @@ import competencesRouter from './competences/CompetencesRouter';
 import messageRouter from './messages/MessageRouter';
 import authRouter from './admin/AuthRouter';
 
-import cookieParser from 'cookie-parser';
+const cookieParser = require('cookie-parser');
 import cors from 'cors';
 import { hash } from './admin/lib/JWT';
 
