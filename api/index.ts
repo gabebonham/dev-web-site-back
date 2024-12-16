@@ -50,7 +50,7 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.listen(3001, () => {
+app.listen(3000, '::', () => {
 	console.log('on');
 });
 
