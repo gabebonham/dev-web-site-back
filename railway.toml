@@ -3,7 +3,7 @@ builder = "NIXPACKS"
 buildCommand = "pnpm prisma generate && pnpm run build"
 
 [build.nixpacksPlan.phases.install]
-cmds = ["pnpm install --no-frozen-lockfile"]
+cmds = ["m -rf .next && rm -rf node_modules && rm pnpm.lock.yaml && pnpm install --no-frozen-lockfile"]
 
 [deploy]
 startCommand = "pnpm run start -H ::"
