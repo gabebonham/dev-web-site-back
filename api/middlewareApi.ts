@@ -15,7 +15,7 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 	if (isAuthorized) {
 		res.set(
 			'Access-Control-Allow-Origin',
-			'https://dev-web-site-front-production.up.railway.app',
+			'https://dev-web-site-back-production.up.railway.app',
 		); // Allow frontend domain
 		res.set('Access-Control-Allow-Credentials', 'true'); // Allow cookies
 
