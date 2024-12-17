@@ -17,14 +17,14 @@ import { hash } from './admin/lib/JWT';
 const app: Express = express();
 app.use(express.json());
 app.use(cookieParser());
-// app.use(
-// 	cors({
-// 		origin: true,
-// 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-// 		allowedHeaders: ['Content-Type'],
-// 		credentials: true,
-// 	}),
-// );
+app.use(
+	cors({
+		origin: true,
+		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+		allowedHeaders: ['Content-Type'],
+		credentials: true,
+	}),
+);
 
 app.use('/api/*', (req, res, next) => {
 	if (req.method == 'POST') {
