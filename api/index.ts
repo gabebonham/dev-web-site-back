@@ -14,8 +14,8 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 import { hash } from './admin/lib/JWT';
 var corsOptions = {
-	origin: true,
-	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	origin: 'https://dev-web-site-front-production.up.railway.app',
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 	allowedHeaders: ['Content-Type'],
 	credentials: true,
 };
