@@ -24,15 +24,16 @@ export async function login(user) {
 	}
 }
 export async function verifyUser(user) {
-	const dbUser = await prisma.user.findMany({
+	const dbUser = await prisma.user.findFirst({
 		where: { userName: user.userName },
-	})[0];
+	});
 	console.log(dbUser);
-	return compareUsers(user, dbUser);
+	console.log(user);
+	return await compareUsers(user, dbUser);
 }
 
 async function compareUsers(incomingUser, dbUser) {
-	const a = bcrypt.compare(incomingUser.password, dbUser.password);
+	const a = await bcrypt.compare(incomingUser.password, dbUser.password);
 	console.log(await hash(incomingUser.password));
 	return a;
 }
