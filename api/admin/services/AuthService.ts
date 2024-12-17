@@ -24,9 +24,9 @@ export async function login(user) {
 	}
 }
 export async function verifyUser(user) {
-	const dbUser = await prisma.user.findUnique({
+	const dbUser = await prisma.user.findMany({
 		where: { userName: user.userName },
-	});
+	})[0];
 	console.log(dbUser);
 	return compareUsers(user, dbUser);
 }
