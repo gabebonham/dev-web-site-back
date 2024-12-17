@@ -37,5 +37,5 @@ export async function deleteCompetenceByIdController(
 	res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 
 	res.setHeader('Accept', 'application/json');
-	res.sendStatus(200);
+	res.json({ msg: 'ok' });
 }

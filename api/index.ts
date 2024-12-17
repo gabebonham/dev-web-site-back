@@ -45,7 +45,7 @@ app.use('/api/*', (req, res, next) => {
 		// Apply middleware to all methods except GET
 		res.setHeader(
 			'Access-Control-Allow-Origin',
-			'https://dev-web-site-front-production.up.railway.app',
+			'https://dev-web-site-back-production.up.railway.app',
 		); // Frontend domain
 		res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 		res.setHeader(
