@@ -11,17 +11,34 @@ import messageRouter from './messages/MessageRouter';
 import authRouter from './admin/AuthRouter';
 
 const cookieParser = require('cookie-parser');
-import cors from 'cors';
+const cors = require('cors');
 import { hash } from './admin/lib/JWT';
-
+var corsOptions = {
+	origin: true,
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type'],
+	credentials: true,
+};
 const app: Express = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
-
+app.use(cors(corsOptions));
 app.use('/api/*', (req, res, next) => {
+	res.setHeader(
+		'Access-Control-Allow-Origin',
+		'https://dev-web-site-front-production.up.railway.app',
+	); // Frontend domain
+	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
+	res.setHeader(
+		'Access-Control-Allow-Methods',
+		'GET, POST, PUT, DELETE, OPTIONS',
+	); // Allow methods
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
+
+	res.setHeader('Accept', 'application/json');
 	if (req.method == 'POST') {
 		// Apply middleware to all methods except GET
+
 		return middleware(req, res, next);
 	}
 	if (req.method == 'DELETE') {

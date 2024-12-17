@@ -13,18 +13,18 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
-		res.set(
+		res.setHeader(
 			'Access-Control-Allow-Origin',
-			'https://dev-web-site-front-production.up.railway.app/',
+			'https://dev-web-site-front-production.up.railway.app',
 		); // Frontend domain
-		res.set('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
-		res.set(
+		res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
+		res.setHeader(
 			'Access-Control-Allow-Methods',
 			'GET, POST, PUT, DELETE, OPTIONS',
 		); // Allow methods
-		res.set('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
+		res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 
-		res.set('Accept', 'application/json');
+		res.setHeader('Accept', 'application/json');
 		return next();
 	} else {
 		res.sendStatus(403);
