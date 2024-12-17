@@ -34,13 +34,19 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 export default middleware;
 
 function getCookie(value) {
-	const list = value.split(';');
-	console.log(list);
-	const listDict = list.map((i) => {
-		const newList = i.split('=');
-		return { key: newList[0], value: newList[1] };
-	});
-	const session = listDict.filter((i) => i.key == 'session')[0];
-	console.log(session.value);
-	return session.value;
+	try {
+		const list = value.split(';');
+		console.log(list);
+		const listDict = list.map((i) => {
+			const newList = i.split('=');
+			return { key: newList[0], value: newList[1] };
+		});
+		const session = listDict.filter((i) => i.key == 'session')[0];
+		console.log(session.value);
+		return session.value;
+	} catch (e) {
+		const session = value.split('=');
+		console.log(session[1]);
+		return session[1];
+	}
 }
