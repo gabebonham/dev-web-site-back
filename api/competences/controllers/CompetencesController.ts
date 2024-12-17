@@ -38,4 +38,5 @@ export async function deleteCompetenceByIdController(
 
 	res.setHeader('Accept', 'application/json');
 	res.json({ msg: 'ok' });
+	res.send({ msg: 'ok' });
 }
