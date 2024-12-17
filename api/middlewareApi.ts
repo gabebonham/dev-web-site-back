@@ -13,7 +13,10 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
-		res.set('Access-Control-Allow-Origin', 'http://localhost:3000'); // Frontend domain
+		res.set(
+			'Access-Control-Allow-Origin',
+			'https://dev-web-site-front-production.up.railway.app/',
+		); // Frontend domain
 		res.set('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 		res.set(
 			'Access-Control-Allow-Methods',
@@ -22,7 +25,7 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 		res.set('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 
 		res.set('Accept', 'application/json');
-		next();
+		return next();
 	} else {
 		res.sendStatus(403);
 	}
