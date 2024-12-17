@@ -20,7 +20,7 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 		res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 		res.setHeader(
 			'Access-Control-Allow-Methods',
-			'GET, POST, PUT, DELETE, OPTIONS',
+			'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 		); // Allow methods
 		res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 
