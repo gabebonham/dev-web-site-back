@@ -30,7 +30,7 @@ app.all('/login', (req, res, next) => {
 
 app.all('/api/competences', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
+	if (req.method != 'GET') {
 		middleware(req, res, next);
 	} else {
 		competencesRouter(req, res, next);
@@ -38,7 +38,7 @@ app.all('/api/competences', (req, res, next) => {
 });
 app.all('/api/blogs', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
+	if (req.method != 'GET') {
 		middleware(req, res, next);
 	} else {
 		blogsRouter(req, res, next);
@@ -46,7 +46,7 @@ app.all('/api/blogs', (req, res, next) => {
 });
 app.all('/api/about', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
+	if (req.method != 'GET') {
 		middleware(req, res, next);
 	} else {
 		aboutRouter(req, res, next);
@@ -54,7 +54,7 @@ app.all('/api/about', (req, res, next) => {
 });
 app.all('/api/contacts', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
+	if (req.method != 'GET') {
 		middleware(req, res, next);
 	} else {
 		contactsRouter(req, res, next);
@@ -62,7 +62,7 @@ app.all('/api/contacts', (req, res, next) => {
 });
 app.all('/api/projects', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
+	if (req.method != 'GET') {
 		middleware(req, res, next);
 	} else {
 		projectsRouter(req, res, next);
@@ -70,7 +70,7 @@ app.all('/api/projects', (req, res, next) => {
 });
 app.all('/api/messages', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
+	if (req.method != 'GET') {
 		middleware(req, res, next);
 	} else {
 		messageRouter(req, res, next);
