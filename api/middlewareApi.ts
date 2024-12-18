@@ -4,9 +4,6 @@ import { NextFunction, Request, Response } from 'express';
 import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
-import app from '.';
-
-app.use(cookieParser());
 
 const middleware = async (req: Request, res: Response, next: NextFunction) => {
 	console.log('token recebido cookies - ' + req.cookies['session']);
