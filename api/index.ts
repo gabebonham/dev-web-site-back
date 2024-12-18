@@ -23,7 +23,7 @@ const app: Express = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use('/api/*', (req, res, next) => {
+app.all('/api/*', (req: Request, res: Response, next) => {
 	console.log('req cookies ' + req.cookies);
 	console.log('req headers ' + req.headers.cookie);
 	res.setHeader(
@@ -66,13 +66,13 @@ app.use('/api/*', (req, res, next) => {
 	// Skip middleware for GET requests
 	next();
 });
-app.all('/api/projects', projectsRouter);
-app.all('/api/blogs', blogsRouter);
-app.all('/api/about', aboutRouter);
-app.all('/api/contacts', contactsRouter);
-app.all('/api/competences', competencesRouter);
-app.all('/api/messages', messageRouter);
-app.all('/login', authRouter);
+app.use('/api/projects', projectsRouter);
+app.use('/api/blogs', blogsRouter);
+app.use('/api/about', aboutRouter);
+app.use('/api/contacts', contactsRouter);
+app.use('/api/competences', competencesRouter);
+app.use('/api/messages', messageRouter);
+app.use('/login', authRouter);
 app.options('*', (req, res) => {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
