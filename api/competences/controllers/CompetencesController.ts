@@ -14,11 +14,11 @@ export async function getAllCompetencesController(req: Request, res: Response) {
 
 export async function getCompetenceByIdController(req: Request, res: Response) {
 	const competence = await getCompetenceById(req.body.id);
-	res.send(JSON.stringify({ competence: competence }));
+	res.send(competence);
 }
 export async function createCompetenceController(req: Request, res: Response) {
 	await createCompetence(req.body);
-	res.sendStatus(200);
+	res.send({ msg: 'ok' });
 }
 export async function deleteCompetenceByIdController(
 	req: Request,
@@ -27,5 +27,5 @@ export async function deleteCompetenceByIdController(
 	const { id } = req.params;
 	await deleteCompetenceById(Number.parseInt(id));
 
-	res.json({ msg: 'ok' });
+	res.send({ msg: 'ok' });
 }
