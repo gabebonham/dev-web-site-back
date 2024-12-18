@@ -24,8 +24,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.all('/api/*', (req: Request, res: Response, next) => {
-	console.log('req cookies ' + req.cookies.toString());
-	console.log('req headers ' + req.headers.cookie.toString());
 	res.setHeader(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-front-production.up.railway.app',
