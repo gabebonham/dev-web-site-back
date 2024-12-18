@@ -8,8 +8,8 @@ import cookie from 'cookie'; // Import the cookie library
 const middleware = async (req, res: Response, next: NextFunction) => {
 	console.log('token recebido - ' + req.headers.cookie);
 	console.log(process.env.DATABASE_URL);
-	// const session = getCookie(await req.headers.cookie);
-	const session = req.cookies.session;
+	const session = getCookie(await req.headers.cookie);
+
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
