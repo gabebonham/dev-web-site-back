@@ -81,4 +81,4 @@ app.listen(3000, '::', () => {
 	console.log('on');
 });
 
-module.exports = app;
+export default app;
