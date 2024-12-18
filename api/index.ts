@@ -23,60 +23,62 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
-app.all('/login', (req, res, next) => {
-	setHeaders(res);
-	authRouter(req, res, next);
-});
+app.use('/api/projects', projectsRouter);
+app.use('/api/blogs', blogsRouter);
+app.use('/api/about', aboutRouter);
+app.use('/api/contacts', contactsRouter);
+app.use('/api/competences', competencesRouter);
+app.use('/api/messages', messageRouter);
+app.use('/login', authRouter);
 
-app.all('/api/competences', (req, res, next) => {
-	setHeaders(res);
-	if (req.method != 'GET') {
-		middleware(req, res, next);
-	} else {
-		competencesRouter(req, res, next);
-	}
-});
 app.all('/api/blogs', (req, res, next) => {
 	setHeaders(res);
-	if (req.method != 'GET') {
-		middleware(req, res, next);
+	if (req.method == 'GET') {
+		return blogsRouter(req, res, next);
 	} else {
-		blogsRouter(req, res, next);
-	}
-});
-app.all('/api/about', (req, res, next) => {
-	setHeaders(res);
-	if (req.method != 'GET') {
-		middleware(req, res, next);
-	} else {
-		aboutRouter(req, res, next);
+		return middleware(req, res, next);
 	}
 });
 app.all('/api/contacts', (req, res, next) => {
 	setHeaders(res);
-	if (req.method != 'GET') {
-		middleware(req, res, next);
+	if (req.method == 'GET') {
+		return contactsRouter(req, res, next);
 	} else {
-		contactsRouter(req, res, next);
+		return middleware(req, res, next);
 	}
 });
-app.all('/api/projects', (req, res, next) => {
+app.all('/api/about', (req, res, next) => {
 	setHeaders(res);
-	if (req.method != 'GET') {
-		middleware(req, res, next);
+	if (req.method == 'GET') {
+		return aboutRouter(req, res, next);
 	} else {
-		projectsRouter(req, res, next);
+		return middleware(req, res, next);
 	}
 });
 app.all('/api/messages', (req, res, next) => {
 	setHeaders(res);
-	if (req.method != 'GET') {
-		middleware(req, res, next);
+	if (req.method == 'GET') {
+		return messageRouter(req, res, next);
 	} else {
-		messageRouter(req, res, next);
+		return middleware(req, res, next);
 	}
 });
-
+app.all('/api/competences', (req, res, next) => {
+	setHeaders(res);
+	if (req.method == 'GET') {
+		return competencesRouter(req, res, next);
+	} else {
+		return middleware(req, res, next);
+	}
+});
+app.all('/api/projects', (req, res, next) => {
+	setHeaders(res);
+	if (req.method == 'GET') {
+		return projectsRouter(req, res, next);
+	} else {
+		return middleware(req, res, next);
+	}
+});
 function setHeaders(res) {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
