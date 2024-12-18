@@ -5,14 +5,14 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
-const authenticatFacade = async (req: Request, res: Response, next, route) => {
+const authenticatFacade = async (req: Request, res: Response, next) => {
 	console.log('token recebido cookies - ' + req.cookies['session']);
 	console.log(process.env.DATABASE_URL);
 	const session = getCookie(await req.cookies['session']);
 
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
-	isAuthorized ? route(req, res, next) : null;
+	isAuthorized ? next() : null;
 };
 
 export default authenticatFacade;
