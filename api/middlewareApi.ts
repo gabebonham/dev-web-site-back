@@ -8,8 +8,8 @@ import cookie from 'cookie'; // Import the cookie library
 const middleware = async (req, res: Response, next: NextFunction) => {
 	console.log('token recebido - ' + req.headers.cookie);
 	console.log(process.env.DATABASE_URL);
-	const session = getCookie(await req.headers.cookie);
-
+	// const session = getCookie(await req.headers.cookie);
+	const session = req.cookies.session;
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
 	if (isAuthorized) {
@@ -34,19 +34,21 @@ const middleware = async (req, res: Response, next: NextFunction) => {
 export default middleware;
 
 function getCookie(value) {
-	try {
-		const list = value.split(';');
-		console.log(list);
-		const listDict = list.map((i) => {
-			const newList = i.split('=');
-			return { key: newList[0], value: newList[1] };
-		});
-		const session = listDict.filter((i) => i.key == 'session')[0];
-		console.log(session.value);
+	if (!value) {
+		console.log('No cookies found');
+		return null;
+	}
+	const list = value.split(';');
+	const listDict = list.map((i) => {
+		const newList = i.split('=');
+		return { key: newList[0], value: newList[1] };
+	});
+	const session = listDict.filter((i) => i.key == 'session')[0];
+	if (session) {
+		console.log('Session value:', session.value);
 		return session.value;
-	} catch (e) {
-		const session = value.split('=');
-		console.log(session[1]);
-		return session[1];
+	} else {
+		console.log('Session cookie not found');
+		return null;
 	}
 }
