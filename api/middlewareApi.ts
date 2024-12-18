@@ -5,21 +5,17 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
-const middleware = async (req: Request, res: Response, next: NextFunction) => {
+const authenticatFacade = async (req: Request, res: Response, next, route) => {
 	console.log('token recebido cookies - ' + req.cookies['session']);
 	console.log(process.env.DATABASE_URL);
 	const session = getCookie(await req.cookies['session']);
 
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
-	if (isAuthorized) {
-		return next();
-	} else {
-		res.sendStatus(403);
-	}
+	isAuthorized ? route(req, res, next) : null;
 };
 
-export default middleware;
+export default authenticatFacade;
 
 function getCookie(value) {
 	if (!value) {

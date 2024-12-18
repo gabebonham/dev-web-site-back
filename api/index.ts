@@ -1,7 +1,7 @@
 require('dotenv').config();
 import 'dotenv';
 import express, { Express, Request, Response } from 'express';
-import middleware from './middlewareApi';
+import authenticatFacade from './middlewareApi';
 import projectsRouter from './projects/ProjectsRouter';
 import blogsRouter from './blogs/BlogsRouter';
 import aboutRouter from './about/AboutRouter';
@@ -33,51 +33,39 @@ app.use('/login', authRouter);
 
 app.all('/api/blogs', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
-		return blogsRouter(req, res, next);
-	} else {
-		return middleware(req, res, next);
-	}
-});
-app.all('/api/contacts', (req, res, next) => {
-	setHeaders(res);
-	if (req.method == 'GET') {
-		return contactsRouter(req, res, next);
-	} else {
-		return middleware(req, res, next);
-	}
-});
-app.all('/api/about', (req, res, next) => {
-	setHeaders(res);
-	if (req.method == 'GET') {
-		return aboutRouter(req, res, next);
-	} else {
-		return middleware(req, res, next);
-	}
-});
-app.all('/api/messages', (req, res, next) => {
-	setHeaders(res);
-	if (req.method == 'GET') {
-		return messageRouter(req, res, next);
-	} else {
-		return middleware(req, res, next);
-	}
-});
-app.all('/api/competences', (req, res, next) => {
-	setHeaders(res);
-	if (req.method == 'GET') {
-		return competencesRouter(req, res, next);
-	} else {
-		return middleware(req, res, next);
-	}
+	req.method == 'GET'
+		? blogsRouter(req, res, next)
+		: authenticatFacade(req, res, next, blogsRouter);
 });
 app.all('/api/projects', (req, res, next) => {
 	setHeaders(res);
-	if (req.method == 'GET') {
-		return projectsRouter(req, res, next);
-	} else {
-		return middleware(req, res, next);
-	}
+	req.method == 'GET'
+		? projectsRouter(req, res, next)
+		: authenticatFacade(req, res, next, projectsRouter);
+});
+app.all('/api/contacts', (req, res, next) => {
+	setHeaders(res);
+	req.method == 'GET'
+		? contactsRouter(req, res, next)
+		: authenticatFacade(req, res, next, contactsRouter);
+});
+app.all('/api/competences', (req, res, next) => {
+	setHeaders(res);
+	req.method == 'GET'
+		? competencesRouter(req, res, next)
+		: authenticatFacade(req, res, next, competencesRouter);
+});
+app.all('/api/about', (req, res, next) => {
+	setHeaders(res);
+	req.method == 'GET'
+		? aboutRouter(req, res, next)
+		: authenticatFacade(req, res, next, aboutRouter);
+});
+app.all('/api/messages', (req, res, next) => {
+	setHeaders(res);
+	req.method == 'GET'
+		? messageRouter(req, res, next)
+		: authenticatFacade(req, res, next, messageRouter);
 });
 function setHeaders(res) {
 	res.setHeader(
