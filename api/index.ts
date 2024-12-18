@@ -47,7 +47,7 @@ app.get('/**/*', (req, res, next) => {
 	res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 
 	res.setHeader('Accept', 'application/json');
-	next();
+	return next();
 });
 app.listen(3000, '::', () => {
 	console.log('on');
