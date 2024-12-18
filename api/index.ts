@@ -22,19 +22,12 @@ const app: Express = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use('/api/projects', projectsRouter);
-app.use('/api/blogs', blogsRouter);
-app.use('/api/about', aboutRouter);
-app.use('/api/contacts', contactsRouter);
-app.use('/api/competences', competencesRouter);
-app.use('/api/messages', messageRouter);
-app.use('/login', authRouter);
 
 app.post('/api/*', middleware);
 app.put('/api/*', middleware);
 app.delete('/api/*', middleware);
 app.patch('/api/*', middleware);
-app.all('/api/**/*', (req, res, next) => {
+app.all('/api/*', (req, res, next) => {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-front-production.up.railway.app',
@@ -49,7 +42,15 @@ app.all('/api/**/*', (req, res, next) => {
 	res.setHeader('Accept', 'application/json');
 	return next();
 });
-app.get('/**/*', (req, res, next) => {
+app.use('/api/projects', projectsRouter);
+app.use('/api/blogs', blogsRouter);
+app.use('/api/about', aboutRouter);
+app.use('/api/contacts', contactsRouter);
+app.use('/api/competences', competencesRouter);
+app.use('/api/messages', messageRouter);
+app.use('/login', authRouter);
+
+app.get('/*', (req, res, next) => {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-front-production.up.railway.app',
