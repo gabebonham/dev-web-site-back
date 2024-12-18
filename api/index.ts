@@ -23,6 +23,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
+app.all('/login', (req, res, next) => {
+	setHeaders(res);
+	authRouter(req, res, next);
+});
+
 app.all('/api/competences', (req, res, next) => {
 	setHeaders(res);
 	if (req.method == 'GET') {
@@ -71,7 +76,6 @@ app.all('/api/messages', (req, res, next) => {
 		messageRouter(req, res, next);
 	}
 });
-app.all('/login', authRouter);
 
 function setHeaders(res) {
 	res.setHeader(
