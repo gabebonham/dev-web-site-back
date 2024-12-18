@@ -43,21 +43,14 @@ app.all('/api/*', (req: Request, res: Response, next) => {
 	}
 	if (req.method == 'DELETE') {
 		// Apply middleware to all methods except GET
-		res.setHeader(
-			'Access-Control-Allow-Origin',
-			'https://dev-web-site-front-production.up.railway.app',
-		); // Frontend domain
-		res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
-		res.setHeader(
-			'Access-Control-Allow-Methods',
-			'GET, POST, PUT, DELETE, OPTIONS, PATCH',
-		); // Allow methods
-		res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 
-		res.setHeader('Accept', 'application/json');
 		return middleware(req, res, next);
 	}
 	if (req.method == 'PUT') {
+		// Apply middleware to all methods except GET
+		return middleware(req, res, next);
+	}
+	if (req.method == 'OPTIONS') {
 		// Apply middleware to all methods except GET
 		return middleware(req, res, next);
 	}
