@@ -6,9 +6,9 @@ import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
 const middleware = async (req: Request, res: Response, next: NextFunction) => {
-	console.log('token recebido cookies - ' + JSON.parse(req.cookies));
+	console.log('token recebido cookies - ' + req.cookies['session']);
 	console.log(process.env.DATABASE_URL);
-	const session = getCookie(await req.headers.cookie);
+	const session = getCookie(await req.cookies['session']);
 
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
