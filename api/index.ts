@@ -50,10 +50,7 @@ app.all('/api/*', (req: Request, res: Response, next) => {
 		// Apply middleware to all methods except GET
 		return middleware(req, res, next);
 	}
-	if (req.method == 'OPTIONS') {
-		// Apply middleware to all methods except GET
-		return middleware(req, res, next);
-	}
+
 	// Skip middleware for GET requests
 	next();
 });
