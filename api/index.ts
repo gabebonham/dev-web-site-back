@@ -34,7 +34,7 @@ app.post('/api/*', middleware);
 app.put('/api/*', middleware);
 app.delete('/api/*', middleware);
 app.patch('/api/*', middleware);
-app.options('/api/*', (req, res, next) => {
+app.all('/api/**/*', (req, res, next) => {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-front-production.up.railway.app',
