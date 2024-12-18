@@ -71,7 +71,19 @@ app.use('/api/contacts', contactsRouter);
 app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
-
+app.options('*', (req, res) => {
+	res.setHeader(
+		'Access-Control-Allow-Origin',
+		'https://dev-web-site-front-production.up.railway.app',
+	);
+	res.setHeader(
+		'Access-Control-Allow-Methods',
+		'GET, POST, PUT, DELETE, OPTIONS, PATCH',
+	);
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+	res.setHeader('Access-Control-Allow-Credentials', 'true');
+	res.sendStatus(200); // Respond with status 200 OK
+});
 app.listen(3000, '::', () => {
 	console.log('on');
 });
