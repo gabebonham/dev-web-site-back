@@ -24,6 +24,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use('/api/*', (req, res, next) => {
+	console.log('req cookies ' + req.cookies);
+	console.log('req headers ' + req.headers.cookie);
 	res.setHeader(
 		'Access-Control-Allow-Origin',
 		'https://dev-web-site-front-production.up.railway.app',
@@ -64,13 +66,13 @@ app.use('/api/*', (req, res, next) => {
 	// Skip middleware for GET requests
 	next();
 });
-app.use('/api/projects', projectsRouter);
-app.use('/api/blogs', blogsRouter);
-app.use('/api/about', aboutRouter);
-app.use('/api/contacts', contactsRouter);
-app.use('/api/competences', competencesRouter);
-app.use('/api/messages', messageRouter);
-app.use('/login', authRouter);
+app.all('/api/projects', projectsRouter);
+app.all('/api/blogs', blogsRouter);
+app.all('/api/about', aboutRouter);
+app.all('/api/contacts', contactsRouter);
+app.all('/api/competences', competencesRouter);
+app.all('/api/messages', messageRouter);
+app.all('/login', authRouter);
 app.options('*', (req, res) => {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
