@@ -4,7 +4,7 @@ import { authenticate, login } from '../services/AuthService';
 export async function loginController(req: Request, res: Response) {
 	const user = req.body;
 	const session = await login(user);
-	console.log(JSON.stringify(session));
+	console.log('login controller - ' + JSON.stringify(session));
 	if (session) {
 		res.send(JSON.stringify(session));
 	} else {
@@ -14,6 +14,6 @@ export async function loginController(req: Request, res: Response) {
 export async function authenticateController(session) {
 	console.log('auth controller');
 	const auth = await authenticate(session);
-	console.log('nops');
+	console.log('yes');
 	return auth;
 }

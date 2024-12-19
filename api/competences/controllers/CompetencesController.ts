@@ -8,7 +8,6 @@ import {
 
 export async function getAllCompetencesController(req: Request, res: Response) {
 	const competences = await getAllCompetences();
-
 	res.send(competences);
 }
 
