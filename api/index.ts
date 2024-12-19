@@ -31,44 +31,6 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.all('/api/blogs', (req, res, next) => {
-	setHeaders(res);
-	req.method == 'GET' ? next() : authenticatFacade(req, res, next);
-});
-app.all('/api/projects', (req, res, next) => {
-	setHeaders(res);
-	req.method == 'GET' ? next() : authenticatFacade(req, res, next);
-});
-app.all('/api/contacts', (req, res, next) => {
-	setHeaders(res);
-	req.method == 'GET' ? next() : authenticatFacade(req, res, next);
-});
-app.all('/api/competences', (req, res, next) => {
-	setHeaders(res);
-	req.method == 'GET' ? next() : authenticatFacade(req, res, next);
-});
-app.all('/api/about', (req, res, next) => {
-	setHeaders(res);
-	req.method == 'GET' ? next() : authenticatFacade(req, res, next);
-});
-app.all('/api/messages', (req, res, next) => {
-	setHeaders(res);
-	req.method == 'GET' ? next() : authenticatFacade(req, res, next);
-});
-function setHeaders(res) {
-	res.setHeader(
-		'Access-Control-Allow-Origin',
-		'https://dev-web-site-front-production.up.railway.app',
-	); // Frontend domain
-	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
-	res.setHeader(
-		'Access-Control-Allow-Methods',
-		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
-	); // Allow methods
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
-
-	res.setHeader('Accept', 'application/json');
-}
 app.listen(3000, '::', () => {
 	console.log('on');
 });
