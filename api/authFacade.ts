@@ -6,7 +6,8 @@ import cookieParser from 'cookie-parser';
 import cookie from 'cookie'; // Import the cookie library
 
 const authenticatFacade = async (req: Request, res: Response, next) => {
-	console.log('token recebido cookies - ' + req.cookies['session']);
+	console.log('token recebido cookies - ' + req.cookies.session);
+	console.log('token 1 - ' + req.cookies);
 	console.log(process.env.DATABASE_URL);
 	const session = getCookie(await req.cookies['session']);
 
