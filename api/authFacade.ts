@@ -12,7 +12,7 @@ const authenticatFacade = async (req: Request, res: Response, next) => {
 
 	console.log('token - ' + session);
 	const isAuthorized = await authenticateController(session);
-	isAuthorized ? next() : null;
+	return isAuthorized ? next() : null;
 };
 
 export default authenticatFacade;
