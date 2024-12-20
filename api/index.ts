@@ -31,7 +31,9 @@ app.use('/api/contacts', contactsRouter);
 app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
-
+app.get('/asdf', (req, res) => {
+	res.send('AIAII');
+});
 app.listen(3000, '::', () => {
 	console.log('on');
 });
