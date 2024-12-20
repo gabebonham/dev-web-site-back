@@ -12,9 +12,10 @@ export async function decrypt(session) {
 }
 export async function encrypt(payload) {
 	const key = new TextEncoder().encode('grote');
+	console.log(new Date().setUTCFullYear(2050, 2, 2));
 	return await new SignJWT(payload)
 		.setIssuedAt()
-		.setExpirationTime('1h')
+		.setExpirationTime(new Date().setUTCFullYear(2050, 2, 2))
 		.setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
 		.sign(key);
 }
