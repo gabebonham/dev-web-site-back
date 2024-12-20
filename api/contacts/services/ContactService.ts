@@ -5,10 +5,6 @@ export async function getAllContacts() {
 	return await prisma.contact.findMany();
 }
 
-export async function getContactById(id) {
-	return await prisma.contact.findUnique({ where: { id: id } });
-}
-
 export async function createContact(contact) {
 	console.log('post');
 	await prisma.contact.create({
@@ -18,6 +14,9 @@ export async function createContact(contact) {
 			email: contact.email,
 		},
 	});
+}
+export async function getContactById(id) {
+	return await prisma.contact.findUnique({ where: { id: id } });
 }
 
 export async function deleteContactById(id) {
