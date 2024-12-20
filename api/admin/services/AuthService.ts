@@ -5,7 +5,7 @@ import prisma from '../../db/PrismaDb';
 
 const cookie = {
 	name: 'session',
-	options: { httpOnly: true, secure: true, sameSite: 'lax', path: '/' },
+	options: { httpOnly: false, secure: true, sameSite: 'lax', path: '/' },
 	duration: 24 * 60 * 60 * 1000,
 };
 

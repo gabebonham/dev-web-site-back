@@ -11,6 +11,7 @@ export async function getCompetenceById(id) {
 }
 
 export async function createCompetence(competence: Competence) {
+	console.log('CRIADO');
 	await prisma.competence.create({
 		data: {
 			name: competence.name,
@@ -18,6 +19,6 @@ export async function createCompetence(competence: Competence) {
 		},
 	});
 }
-export async function deleteCompetenceById(id) {
+export async function deleteCompetenceById(id: number) {
 	await prisma.competence.delete({ where: { id: id } });
 }

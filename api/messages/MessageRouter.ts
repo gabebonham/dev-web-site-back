@@ -13,19 +13,19 @@ const router = Router();
 
 router.get('', getAllMessagesController);
 router.get('/:id', getMessageByIdController);
-router.post('', (req, res, next) => {
+router.post('', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	storeMessageController;
+	(await authenticatFacade(req, res, next)) &&
+		storeMessageController(req, res);
 });
-router.put('/:id', (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	updateMessageController;
+	(await authenticatFacade(req, res, next)) &&
+		updateMessageController(req, res);
 });
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	deleteMessageByIdController;
+	(await authenticatFacade(req, res, next)) &&
+		deleteMessageByIdController(req, res);
 });
 export default router;

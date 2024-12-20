@@ -3,17 +3,13 @@ import 'dotenv';
 import { NextFunction, Request, Response } from 'express';
 import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
-import cookie from 'cookie'; // Import the cookie library
 
-const authenticatFacade = async (req: Request, res: Response, next) => {
-	console.log('token recebido cookies - ' + req.cookies['session']);
-	console.log('token 1 - ' + req.cookies.session);
-	console.log(process.env.DATABASE_URL);
-	const session = getCookie(await req.cookies['session']);
+const authenticatFacade = async (req, res, next) => {
+	const session = await req.cookies;
 
-	console.log('token - ' + session);
-	const isAuthorized = await authenticateController(session);
-	return isAuthorized ? next() : null;
+	console.log(session.session);
+	const isAuthorized = await authenticateController(session.session);
+	return isAuthorized;
 };
 
 export default authenticatFacade;

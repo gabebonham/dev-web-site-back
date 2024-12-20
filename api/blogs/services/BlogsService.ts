@@ -13,6 +13,7 @@ export async function getBlogById(id: number) {
 }
 
 export async function createBlog(blog: Blog) {
+	console.log('crate blog');
 	await prisma.blog.create({
 		data: {
 			title: blog.title,
@@ -33,5 +34,6 @@ export async function updateBlog(blog: Blog) {
 }
 
 export async function deleteBlogById(id: number) {
+	console.log('del');
 	await prisma.blog.delete({ where: { id: id } });
 }

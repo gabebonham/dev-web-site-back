@@ -12,15 +12,15 @@ const router = Router();
 
 router.get('', getAllContactsController);
 router.get('/:id', getContactByIdController);
-router.post('', (req, res, next) => {
+router.post('', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	createContactController;
+	(await authenticatFacade(req, res, next)) &&
+		createContactController(req, res);
 });
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	deleteContactByIdController;
+	(await authenticatFacade(req, res, next)) &&
+		deleteContactByIdController(req, res);
 });
 
 export default router;

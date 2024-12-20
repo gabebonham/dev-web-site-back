@@ -10,6 +10,7 @@ export async function getContactById(id) {
 }
 
 export async function createContact(contact) {
+	console.log('post');
 	await prisma.contact.create({
 		data: {
 			platformName: contact.platformName,

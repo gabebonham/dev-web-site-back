@@ -12,15 +12,15 @@ const router = Router();
 
 router.get('', getAllCompetencesController);
 router.get('/:id', getCompetenceByIdController);
-router.post('', (req, res, next) => {
+router.post('', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	createCompetenceController;
+	(await authenticatFacade(req, res, next)) &&
+		createCompetenceController(req, res);
 });
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	deleteCompetenceByIdController;
+	(await authenticatFacade(req, res, next)) &&
+		deleteCompetenceByIdController(req, res);
 });
 
 export default router;

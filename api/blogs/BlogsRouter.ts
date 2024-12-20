@@ -13,20 +13,20 @@ const router = Router();
 
 router.get('', getAllBlogsController);
 router.get('/:id', getBlogByIdController);
-router.post('', (req, res, next) => {
+router.post('', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	createBlogController;
+	(await authenticatFacade(req, res, next)) &&
+		createBlogController(req, res);
 });
-router.put('', (req, res, next) => {
+router.put('', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	updateBlogController;
+	(await authenticatFacade(req, res, next)) &&
+		updateBlogController(req, res);
 });
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	deleteBlogByIdController;
+	(await authenticatFacade(req, res, next)) &&
+		deleteBlogByIdController(req, res);
 });
 
 export default router;

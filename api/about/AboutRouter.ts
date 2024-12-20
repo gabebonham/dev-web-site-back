@@ -9,10 +9,10 @@ import authenticatFacade from '../authFacade';
 const router = Router();
 
 router.get('', getAboutController);
-router.put('', (req, res, next) => {
+router.put('', async (req, res, next) => {
 	setHeaders(res);
-	authenticatFacade(req, res, next);
-	updateAboutController(req, res);
+	(await authenticatFacade(req, res, next)) &&
+		updateAboutController(req, res);
 });
 
 export default router;

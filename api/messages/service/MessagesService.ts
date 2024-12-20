@@ -24,6 +24,7 @@ export async function deleteMessageById(id) {
 	await prisma.message.delete({ where: { id: id } });
 }
 export async function updateMessage(id) {
+	console.log(id);
 	const message = (await getMessageById(id)) as Message;
 	message.isNew = false;
 	await prisma.message.update({

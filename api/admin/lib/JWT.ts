@@ -4,7 +4,7 @@ export async function decrypt(session) {
 	const key = new TextEncoder().encode('grote');
 	try {
 		console.log('decrypt');
-		const a = await jwtVerify(session, key);
+		const { payload } = await jwtVerify(session, key);
 		return true;
 	} catch (e) {
 		return false;

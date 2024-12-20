@@ -16,8 +16,9 @@ export async function getCompetenceByIdController(req: Request, res: Response) {
 	res.send(competence);
 }
 export async function createCompetenceController(req: Request, res: Response) {
+	console.log('CRIADO');
 	await createCompetence(req.body);
-	res.send({ msg: 'ok' });
+	res.sendStatus(200);
 }
 export async function deleteCompetenceByIdController(
 	req: Request,
