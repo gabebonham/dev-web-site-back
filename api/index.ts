@@ -14,7 +14,7 @@ require('dotenv').config();
 import 'dotenv';
 import cors from 'cors';
 var corsOptions = {
-	origin: 'https://dev-web-site-front-production.up.railway.app',
+	origin: '*',
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 	allowedHeaders: ['Content-Type'],
 	credentials: true,
