@@ -14,7 +14,7 @@ require('dotenv').config();
 import 'dotenv';
 import cors from 'cors';
 var corsOptions = {
-	origin: '*',
+	origin: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 	allowedHeaders: ['Content-Type'],
 	credentials: true,
