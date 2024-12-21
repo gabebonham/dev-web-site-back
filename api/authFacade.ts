@@ -8,6 +8,7 @@ const authenticatFacade = async (req: Request, res: Response, next) => {
 	const h = await req.headers;
 	const cook = await h.authorization;
 	const cop = await h.cookie;
+	console.log(h);
 	console.log(cop);
 	console.log(cook);
 	const isAuthorized = await authenticateController(cook);
