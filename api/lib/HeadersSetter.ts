@@ -1,5 +1,5 @@
-export function setHeaders(res) {
-	res.setHeader('Access-Control-Allow-Origin', '*'); // Frontend domain
+export function setHeaders(req: Request, res) {
+	res.setHeader('Access-Control-Allow-Origin', req.headers.get('host')); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
 		'Access-Control-Allow-Methods',
