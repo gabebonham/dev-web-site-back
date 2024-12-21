@@ -12,8 +12,14 @@ import { setHeaders } from '../lib/HeadersSetter';
 
 const router = Router();
 
-router.get('', getAllProjectsController);
-router.get('/:id', getProjectByIdController);
+router.get('', async (req, res, next) => {
+	setHeaders(res);
+	getAllProjectsController(req, res);
+});
+router.get('/:id', async (req, res, next) => {
+	setHeaders(res);
+	getProjectByIdController(req, res);
+});
 router.post('', async (req, res, next) => {
 	setHeaders(res);
 	(await authenticatFacade(req, res, next)) &&

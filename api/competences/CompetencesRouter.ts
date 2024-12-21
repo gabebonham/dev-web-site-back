@@ -10,8 +10,14 @@ import authenticatFacade from '../authFacade';
 
 const router = Router();
 
-router.get('', getAllCompetencesController);
-router.get('/:id', getCompetenceByIdController);
+router.get('', async (req, res, next) => {
+	setHeaders(res);
+	getAllCompetencesController(req, res);
+});
+router.get('/:id', async (req, res, next) => {
+	setHeaders(res);
+	getCompetenceByIdController(req, res);
+});
 router.post('', async (req, res, next) => {
 	setHeaders(res);
 	(await authenticatFacade(req, res, next)) &&
