@@ -17,7 +17,7 @@ import { setHeaders } from './lib/HeadersSetter';
 var corsOptions = {
 	origin: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-	allowedHeaders: ['Content-Type'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
 	credentials: true,
 };
 
