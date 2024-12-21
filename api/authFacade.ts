@@ -5,10 +5,10 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 
 const authenticatFacade = async (req: Request, res: Response, next) => {
-	const session = await req.headers.cookie;
-
-	console.log(session);
-	const isAuthorized = await authenticateController(getCookie(session));
+	const h = await req.headers;
+	const cook = h.authorization;
+	console.log(cook);
+	const isAuthorized = await authenticateController(cook);
 	return isAuthorized;
 };
 
@@ -24,7 +24,7 @@ function getCookie(value) {
 		const newList = i.split('=');
 		return { key: newList[0], value: newList[1] };
 	});
-	const session = listDict.filter((i) => i.key == 'session')[0];
+	const session = listDict.filter((i) => i.key == 'authorization')[0];
 	if (session) {
 		console.log('Session value:', session.value);
 		return session.value;
