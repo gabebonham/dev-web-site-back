@@ -6,7 +6,7 @@ import prisma from '../../db/PrismaDb';
 export async function login(user) {
 	const userIsValid = await verifyUser(user);
 	if (userIsValid) {
-		const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+		const expires = new Date().setUTCFullYear(2050, 2, 2);
 		const session = await createSession(user, expires);
 		return {
 			session: session,

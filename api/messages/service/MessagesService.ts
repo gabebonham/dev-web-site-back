@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import Message from '../models/MessageModel';
 import prisma from '../../db/PrismaDb';
 
