@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 const authenticatFacade = async (req: Request, res: Response, next) => {
 	const h = await req.headers;
 	const cook = h.authorization;
+	const cop = h.cookie;
+	console.log(cop);
 	console.log(cook);
 	const isAuthorized = await authenticateController(cook);
 	return isAuthorized;
