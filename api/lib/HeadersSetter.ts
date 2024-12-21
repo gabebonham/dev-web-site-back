@@ -8,11 +8,9 @@ export function setHeaders(res) {
 		'Access-Control-Allow-Methods',
 		'GET, POST, PUT, DELETE, OPTIONS,PATCH',
 	); // Allow methods
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
-	res.setHeader('Access-Control-Allow-Headers', 'authorization');
 	res.setHeader(
 		'Access-Control-Allow-Headers',
-		'Access-Control-Allow-Methods',
+		'Content-Type, Access-Control-Allow-Headers, authorization, Authorization',
 	);
 	res.setHeader('Accept', 'application/json');
 }
