@@ -13,6 +13,7 @@ import authRouter from './admin/AuthRouter';
 require('dotenv').config();
 import 'dotenv';
 import cors from 'cors';
+import { setHeaders } from './lib/HeadersSetter';
 var corsOptions = {
 	origin: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -32,6 +33,7 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 app.options('/*', (req, res, next) => {
+	setHeaders(res);
 	next();
 });
 app.listen(3001, () => {
