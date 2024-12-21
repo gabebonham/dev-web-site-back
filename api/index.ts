@@ -31,7 +31,9 @@ app.use('/api/contacts', contactsRouter);
 app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
-
+app.options('/*', (req, res, next) => {
+	next();
+});
 app.listen(3001, () => {
 	console.log('on');
 });
