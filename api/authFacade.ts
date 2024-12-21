@@ -4,11 +4,11 @@ import { NextFunction, Request, Response } from 'express';
 import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 
-const authenticatFacade = async (req, res, next) => {
-	const session = await req.cookies;
+const authenticatFacade = async (req: Request, res, next) => {
+	const session = await req.headers['authorization'];
 
-	console.log(session.session);
-	const isAuthorized = await authenticateController(session.session);
+	console.log(session);
+	const isAuthorized = await authenticateController(session);
 	return isAuthorized;
 };
 

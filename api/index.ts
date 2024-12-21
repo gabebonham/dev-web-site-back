@@ -21,8 +21,6 @@ var corsOptions = {
 
 app.use(express.json());
 
-app.use(cors(corsOptions));
-
 app.use('/api/projects', projectsRouter);
 app.use('/api/blogs', blogsRouter);
 app.use('/api/about', aboutRouter);
