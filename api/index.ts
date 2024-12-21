@@ -33,7 +33,7 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 app.options('/*', (req, res, next) => {
-	setHeaders(res);
+	setHeaders(req, res);
 	next();
 });
 app.listen(3000, '::', () => {

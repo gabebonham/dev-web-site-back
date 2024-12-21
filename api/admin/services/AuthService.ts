@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import { decrypt, encrypt, hash } from '../lib/JWT';
 import bcrypt from 'bcrypt';
 import prisma from '../../db/PrismaDb';

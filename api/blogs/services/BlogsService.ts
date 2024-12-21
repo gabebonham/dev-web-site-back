@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import Blog from '../models/BlogModel';
 import prisma from '../../db/PrismaDb';
 
