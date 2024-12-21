@@ -10,5 +10,9 @@ export function setHeaders(res) {
 	); // Allow methods
 	res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allow these headers in requests
 	res.setHeader('Access-Control-Allow-Headers', 'authorization');
+	res.setHeader(
+		'Access-Control-Allow-Headers',
+		'Access-Control-Allow-Methods',
+	);
 	res.setHeader('Accept', 'application/json');
 }
