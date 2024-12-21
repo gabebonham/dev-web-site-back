@@ -1,8 +1,5 @@
 export function setHeaders(res) {
-	res.setHeader(
-		'Access-Control-Allow-Origin',
-		'https://dev-web-site-front-production.up.railway.app/',
-	); // Frontend domain
+	res.setHeader('Access-Control-Allow-Origin', '*'); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
 		'Access-Control-Allow-Methods',
