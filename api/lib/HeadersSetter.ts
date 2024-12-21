@@ -1,5 +1,5 @@
 export async function setHeaders(req, res) {
-	const a = getCookie(await req.headers.cookies);
+	const a = (await req.headers).host as string;
 	res.setHeader('Access-Control-Allow-Origin', a); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
@@ -8,7 +8,7 @@ export async function setHeaders(req, res) {
 	); // Allow methods
 	res.setHeader(
 		'Access-Control-Allow-Headers',
-		'Content-Type, Access-Control-Allow-Headers, authorization, Authorization',
+		'Content-Type, Access-Control-Allow-Headers, authorization, Authorization, host',
 	);
 	res.setHeader('Accept', 'application/json');
 }
