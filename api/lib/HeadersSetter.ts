@@ -1,6 +1,6 @@
 export async function setHeaders(req, res) {
 	const a = (await req.headers).host as string;
-	res.setHeader('Access-Control-Allow-Origin', a); // Frontend domain
+	res.setHeader('Access-Control-Allow-Origin', 'https://' + a); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
 		'Access-Control-Allow-Methods',
