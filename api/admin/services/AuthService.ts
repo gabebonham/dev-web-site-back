@@ -3,12 +3,6 @@ import { decrypt, encrypt, hash } from '../lib/JWT';
 import bcrypt from 'bcrypt';
 import prisma from '../../db/PrismaDb';
 
-const cookie = {
-	name: 'session',
-	options: { httpOnly: false, secure: true, sameSite: 'lax', path: '/' },
-	duration: 24 * 60 * 60 * 1000,
-};
-
 export async function login(user) {
 	const userIsValid = await verifyUser(user);
 	if (userIsValid) {
@@ -16,7 +10,6 @@ export async function login(user) {
 		const session = await createSession(user, expires);
 		return {
 			session: session,
-			...cookie.options,
 			expires,
 		};
 	} else {
