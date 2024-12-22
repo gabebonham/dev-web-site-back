@@ -17,12 +17,29 @@ import { setHeaders } from './lib/HeadersSetter';
 var corsOptions = {
 	origin: 'https://dev-web-site-front-production.up.railway.app',
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-	allowedHeaders: ['Content-Type', 'Authorization'],
+	allowedHeaders: [
+		'Content-Type',
+		'Authorization',
+		'cookie',
+		'Set-Cookies',
+	],
 	credentials: true,
 };
 
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(
+	cors({
+		origin: 'https://dev-web-site-front-production.up.railway.app',
+		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+		allowedHeaders: [
+			'Content-Type',
+			'Authorization',
+			'cookie',
+			'Set-Cookie',
+		],
+		credentials: true,
+	}),
+);
 
 app.use('/api/projects', projectsRouter);
 app.use('/api/blogs', blogsRouter);

@@ -5,11 +5,12 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 
 const authenticatFacade = async (req, res: Response, next) => {
-	const h = await req;
-
+	const h = await req.headers;
 	console.log(h);
 	const cop = await h.cookie;
 	console.log(cop);
+	const copp = await h.Authorization;
+	console.log(copp);
 	const isAuthorized = await authenticateController(getCookie(cop));
 	return isAuthorized;
 };
