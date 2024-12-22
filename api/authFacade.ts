@@ -25,7 +25,7 @@ function getCookie(value) {
 		const newList = i.split('=');
 		return { key: newList[0], value: newList[1] };
 	});
-	const session = listDict.filter((i) => i.key == 'authorization')[0];
+	const session = listDict.filter((i) => i.key == 'Authorization')[0];
 	if (session) {
 		console.log('Session value:', session.value);
 		return session.value;

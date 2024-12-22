@@ -15,7 +15,7 @@ import 'dotenv';
 import cors from 'cors';
 import { setHeaders } from './lib/HeadersSetter';
 var corsOptions = {
-	origin: true,
+	origin: 'https://dev-web-site-front-production.up.railway.app',
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 	allowedHeaders: ['Content-Type', 'Authorization'],
 	credentials: true,
