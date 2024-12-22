@@ -10,7 +10,7 @@ export async function setHeaders(req, res) {
 	); // Allow methods
 	res.setHeader(
 		'Access-Control-Allow-Headers',
-		'Content-Type, Access-Control-Allow-Headers, Authorization',
+		'Content-Type, Access-Control-Allow-Headers, Authorization, cookie, Set-Cookie',
 	);
 	res.setHeader('Accept', 'application/json');
 }
