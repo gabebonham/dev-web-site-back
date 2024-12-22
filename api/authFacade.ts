@@ -3,16 +3,15 @@ import 'dotenv';
 import { NextFunction, Request, Response } from 'express';
 import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
+import { setHeaders } from './lib/HeadersSetter';
 
-const authenticatFacade = async (req, res: Response, next) => {
-	const h = await req.cookie;
-	console.log(h);
-	const cop = await req.cookies;
-	console.log(cop);
-	const copp = await req.headers.get('Authorization');
-	console.log(copp);
-	const isAuthorized = await authenticateController(getCookie(cop));
-	return isAuthorized;
+const authenticatFacade = async (req, res, next) => {
+	const cookies = await req.headers.cookies;
+	console.log(cookies);
+	const cookiesReq = await req.cookies;
+	console.log(cookiesReq);
+	setHeaders(req, res);
+	(await authenticateController(getCookie('asf'))) && next();
 };
 
 export default authenticatFacade;

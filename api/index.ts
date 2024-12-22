@@ -14,17 +14,22 @@ require('dotenv').config();
 import 'dotenv';
 import cors from 'cors';
 import { setHeaders } from './lib/HeadersSetter';
-var corsOptions = {
-	origin: 'https://dev-web-site-front-production.up.railway.app',
-	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-	allowedHeaders: [
-		'Content-Type',
-		'Authorization',
-		'cookie',
-		'Set-Cookies',
-	],
-	credentials: true,
-};
+
+app.get('/api', async (req, res, next) => {
+	next();
+});
+app.options('/api', async (req, res, next) => {
+	next();
+});
+app.post('/api', async (req, res, next) => {
+	await authenticatFacade(req, res, next);
+});
+app.delete('/api', async (req, res, next) => {
+	await authenticatFacade(req, res, next);
+});
+app.put('/api', async (req, res, next) => {
+	await authenticatFacade(req, res, next);
+});
 
 app.use(express.json());
 app.use(
@@ -48,10 +53,7 @@ app.use('/api/contacts', contactsRouter);
 app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
-app.options('/*', (req, res, next) => {
-	setHeaders(req, res);
-	next();
-});
+
 app.listen(3000, '::', () => {
 	console.log('on');
 });
