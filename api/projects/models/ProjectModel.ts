@@ -3,15 +3,18 @@ export default class Project {
 	name: string;
 	description: string;
 	link: string;
+	inDev: boolean;
 	constructor(
 		id: number,
 		name: string,
 		description: string,
 		link: string,
+		inDev: boolean,
 	) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.link = link;
+		this.inDev = inDev;
 	}
 }

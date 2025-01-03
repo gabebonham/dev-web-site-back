@@ -16,6 +16,7 @@ export async function createProject(project) {
 			name: project.name,
 			link: project.link,
 			description: project.description,
+			inDev: project.inDev,
 		},
 	});
 }
