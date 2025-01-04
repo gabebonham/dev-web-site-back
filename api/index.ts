@@ -34,7 +34,7 @@ app.put('/api', async (req, res, next) => {
 app.use(express.json());
 app.use(
 	cors({
-		origin: 'https://dev-web-site-front-production.up.railway.app',
+		origin: 'https://www.grote.com.br',
 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 		allowedHeaders: [
 			'Content-Type',

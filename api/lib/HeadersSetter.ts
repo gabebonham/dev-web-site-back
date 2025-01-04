@@ -1,7 +1,7 @@
 export async function setHeaders(req, res) {
 	res.setHeader(
 		'Access-Control-Allow-Origin',
-		'https://dev-web-site-front-production.up.railway.app',
+		'https://www.grote.com.br',
 	); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
