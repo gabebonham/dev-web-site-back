@@ -8,6 +8,7 @@ import {
 } from './controller/MessageController';
 import authenticatFacade from '../authFacade';
 import { setHeaders } from '../lib/HeadersSetter';
+import authenticateFacade from '../authFacade';
 
 const router = Router();
 
@@ -21,9 +22,10 @@ router.post('', async (req, res, next) => {
 	storeMessageController(req, res);
 });
 router.put('/:id', async (req, res, next) => {
-	updateMessageController(req, res);
+	authenticateFacade(req, res, next) && updateMessageController(req, res);
 });
 router.delete('/:id', async (req, res, next) => {
-	deleteMessageByIdController(req, res);
+	authenticateFacade(req, res, next) &&
+		deleteMessageByIdController(req, res);
 });
 export default router;

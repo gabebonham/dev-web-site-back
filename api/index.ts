@@ -34,7 +34,7 @@ app.put('/api', async (req, res, next) => {
 app.use(express.json());
 app.use(
 	cors({
-		origin: 'https://www.grote.com.br',
+		origin: process.env.FRONTEND_URL,
 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
 		allowedHeaders: [
 			'Content-Type',
@@ -54,7 +54,10 @@ app.use('/api/competences', competencesRouter);
 app.use('/api/messages', messageRouter);
 app.use('/login', authRouter);
 
-app.listen(3000, '::', () => {
+app.get('/toggle', (req, res, next) => {
+	res.sendStatus(200);
+});
+app.listen(3001, () => {
 	console.log('on');
 });
 

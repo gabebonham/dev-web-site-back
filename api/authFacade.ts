@@ -5,25 +5,22 @@ import { authenticateController } from './admin/controllers/AuthController';
 import cookieParser from 'cookie-parser';
 import { setHeaders } from './lib/HeadersSetter';
 
-const authenticatFacade = async (req, res, next) => {
-	const cookies = await req.headers.cookies;
-	console.log(cookies);
-	const cookiesReq = await req.cookies;
-	console.log(cookiesReq);
+const authenticateFacade = async (req, res, next) => {
+	const cookies = await req.headers.cookie;
+	console.log('authFacade cookies - ' + cookies);
 	setHeaders(req, res);
-	(await authenticateController(getCookie('asf'))) && next();
+	return await authenticateController(getCookie(cookies));
 };
 
-export default authenticatFacade;
-
-function getCookie(value) {
+export function getCookie(value) {
 	if (!value) {
 		console.log('No cookies found');
 		return null;
 	}
 	const list = value.split(';');
+	console.log(list);
 	const listDict = list.map((i) => {
-		const newList = i.split('=');
+		const newList = i.trim().split('=');
 		return { key: newList[0], value: newList[1] };
 	});
 	const session = listDict.filter((i) => i.key == 'Authorization')[0];
@@ -35,3 +32,4 @@ function getCookie(value) {
 		return null;
 	}
 }
+export default authenticateFacade;

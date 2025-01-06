@@ -1,8 +1,5 @@
 export async function setHeaders(req, res) {
-	res.setHeader(
-		'Access-Control-Allow-Origin',
-		'https://www.grote.com.br',
-	); // Frontend domain
+	res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
 		'Access-Control-Allow-Methods',

@@ -14,6 +14,5 @@ export async function loginController(req: Request, res: Response) {
 export async function authenticateController(session) {
 	console.log('auth controller');
 	const auth = await authenticate(session);
-	console.log('yes');
 	return auth;
 }

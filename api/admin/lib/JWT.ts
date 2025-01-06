@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { jwtVerify, SignJWT } from 'jose';
 export async function decrypt(session) {
-	const key = new TextEncoder().encode('grote');
+	const key = new TextEncoder().encode(process.env.JWT_KEY);
 	try {
 		console.log('decrypt');
 		const { payload } = await jwtVerify(session, key);
@@ -11,7 +11,7 @@ export async function decrypt(session) {
 	}
 }
 export async function encrypt(payload) {
-	const key = new TextEncoder().encode('grote');
+	const key = new TextEncoder().encode(process.env.JWT_KEY);
 	console.log(new Date().setUTCFullYear(2050, 2, 2));
 	return await new SignJWT(payload)
 		.setIssuedAt()
