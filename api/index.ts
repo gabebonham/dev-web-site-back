@@ -57,7 +57,7 @@ app.use('/login', authRouter);
 app.get('/toggle', (req, res, next) => {
 	res.sendStatus(200);
 });
-app.listen(3001, () => {
+app.listen(3000, '::', () => {
 	console.log('on');
 });
 
