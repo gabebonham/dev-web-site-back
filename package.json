@@ -13,8 +13,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@neondatabase/serverless": "^0.10.4",
-		"@types/express-serve-static-core": "^5.0.2",
+		"@types/express": "^4.17.1",
 		"bcrypt": "^5.1.1",
 		"cookie": "^1.0.2",
 		"cookie-parser": "^1.4.7",
@@ -28,7 +27,6 @@
 	},
 	"devDependencies": {
 		"@prisma/client": "^6.0.1",
-		"@types/express": "^5.0.0",
 		"@types/ws": "^8.5.13",
 		"cookie": "^1.0.2",
 		"cookie-parser": "^1.4.7",
