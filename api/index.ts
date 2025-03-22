@@ -1,41 +1,10 @@
+// vercel.js (Entry point for Vercel)
 import express, { Express, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import authenticateFacade from './authFacade';
-import {
-	getAllProjectsController,
-	createProjectController,
-	deleteProjectByIdController,
-	getProjectByIdController,
-	updateProjectController,
-} from './projects/controllers/ProjectsController';
-import {
-	getAllBlogsController,
-	createBlogController,
-	deleteBlogByIdController,
-	getBlogByIdController,
-	updateBlogController,
-} from './blogs/controllers/BlogsController';
-import {
-	getAllContactsController,
-	createContactController,
-	deleteContactByIdController,
-	getContactByIdController,
-} from './contacts/controllers/ContactControllers';
-import {
-	getAllCompetencesController,
-	createCompetenceController,
-	deleteCompetenceByIdController,
-	getCompetenceByIdController,
-} from './competences/controllers/CompetencesController';
-import {
-	getAllMessagesController,
-	deleteMessageByIdController,
-	getMessageByIdController,
-	storeMessageController,
-} from './messages/controller/MessageController';
 import { setHeaders } from './lib/HeadersSetter';
+import authenticateFacade from './authFacade';
 
 // Load environment variables
 dotenv.config();
@@ -69,6 +38,15 @@ app.all('*', async (req: Request, res: Response) => {
 
 		// Projects routes
 		if (url.startsWith('/api/projects')) {
+			const {
+				getAllProjectsController,
+				getProjectByIdController,
+				createProjectController,
+				updateProjectController,
+				deleteProjectByIdController,
+			} = await import(
+				'./projects/controllers/ProjectsController'
+			);
 			if (method === 'GET' && url === '/api/projects') {
 				await getAllProjectsController(req, res);
 			} else if (
@@ -105,6 +83,13 @@ app.all('*', async (req: Request, res: Response) => {
 		}
 		// Blogs routes
 		else if (url.startsWith('/api/blogs')) {
+			const {
+				getAllBlogsController,
+				getBlogByIdController,
+				createBlogController,
+				updateBlogController,
+				deleteBlogByIdController,
+			} = await import('./blogs/controllers/BlogsController');
 			if (method === 'GET' && url === '/api/blogs') {
 				await getAllBlogsController(req, res);
 			} else if (
@@ -138,6 +123,14 @@ app.all('*', async (req: Request, res: Response) => {
 		}
 		// Contacts routes
 		else if (url.startsWith('/api/contacts')) {
+			const {
+				getAllContactsController,
+				getContactByIdController,
+				createContactController,
+				deleteContactByIdController,
+			} = await import(
+				'./contacts/controllers/ContactControllers'
+			);
 			if (method === 'GET' && url === '/api/contacts') {
 				await getAllContactsController(req, res);
 			} else if (
@@ -167,6 +160,14 @@ app.all('*', async (req: Request, res: Response) => {
 		}
 		// Competences routes
 		else if (url.startsWith('/api/competences')) {
+			const {
+				getAllCompetencesController,
+				getCompetenceByIdController,
+				createCompetenceController,
+				deleteCompetenceByIdController,
+			} = await import(
+				'./competences/controllers/CompetencesController'
+			);
 			if (method === 'GET' && url === '/api/competences') {
 				await getAllCompetencesController(req, res);
 			} else if (
@@ -199,6 +200,14 @@ app.all('*', async (req: Request, res: Response) => {
 		}
 		// Messages routes
 		else if (url.startsWith('/api/messages')) {
+			const {
+				getAllMessagesController,
+				getMessageByIdController,
+				storeMessageController,
+				deleteMessageByIdController,
+			} = await import(
+				'./messages/controller/MessageController'
+			);
 			if (method === 'GET' && url === '/api/messages') {
 				await getAllMessagesController(req, res);
 			} else if (
@@ -243,8 +252,5 @@ app.all('*', async (req: Request, res: Response) => {
 	}
 });
 
-app.listen(3000, '::', () => {
-	console.log(`Server is running`);
-});
-
+// Export the app for Vercel
 export default app;
