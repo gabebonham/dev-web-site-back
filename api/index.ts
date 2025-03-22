@@ -275,4 +275,4 @@ app.listen(3000, '::', () => {
 	console.log(`Server is running`);
 });
 
-export default app;
+module.exports =  app;
