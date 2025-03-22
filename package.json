@@ -2,7 +2,7 @@
 	"name": "dev-web-site-back",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "api/index.js",
 	"private": false,
 	"packageManager": "pnpm@9.13.0",
 	"engines": {
