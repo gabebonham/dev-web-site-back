@@ -15,5 +15,10 @@
       "src": "/(.*)",
       "dest": "api/index.ts" 
     }
-  ]
+  ],
+  "env": {
+    "STORAGE_DATABASE_URL": "postgres://neondb_owner:foxK2qWyi6SE@ep-misty-shadow-a4ugmup4-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require",
+    "FRONTEND_URL": "https://www.grote.com.br",
+    "JWT_KEY":"grote"
+  }
 }
