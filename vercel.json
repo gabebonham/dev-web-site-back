@@ -5,8 +5,8 @@
       "src": "api/index.ts",
       "use": "@vercel/node",
       "config": {
-        "installCommand": "npm install --save-dev prisma npm install",
-        "buildCommand": "prisma generate && pnpm run build"
+        "installCommand": "npm install --save-dev prisma && npm install",
+        "buildCommand": "npx prisma generate && pnpm run build"
       }
     }
   ],
