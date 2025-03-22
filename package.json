@@ -6,7 +6,7 @@
 	"private": false,
 	"packageManager": "pnpm@9.13.0",
 	"engines": {
-		"node": "20.x"
+		"node": "22.x"
 	},
 	"scripts": {
 		"build": "rm -rf dist && npx tsc --build",
