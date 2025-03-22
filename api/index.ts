@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import dotenv from 'dotenv';
+
 import {
 	getAllProjects,
 	getProjectById,
@@ -38,9 +38,6 @@ import {
 import { getAbout, updateAbout } from './services/AboutService';
 import { setHeaders } from './lib/HeadersSetter';
 import { authenticate, login } from './services/auth';
-
-// Load environment variables
-dotenv.config();
 
 const app: Express = express();
 
