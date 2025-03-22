@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.ts",
+      "src": "api/index.ts", // Input file (source)
       "use": "@vercel/node",
       "config": {
         "installCommand": "npm install --save-dev prisma && npm install",
-        "buildCommand": "rm -rf prisma && npx prisma generate && pnpm run build"
+        "buildCommand": "npx prisma generate && pnpm run build"
       }
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "api/index.ts"
+      "src": "/(.*)", // Catch-all route
+      "dest": "/dist/index.js" // Output file (destination)
     }
   ]
 }
