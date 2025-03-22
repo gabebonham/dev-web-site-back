@@ -1,5 +1,5 @@
-import Competence from '../models/CompetenceModel';
-import prisma from '../../db/PrismaDb';
+import Competence from '../competences/models/CompetenceModel';
+import prisma from '../db/PrismaDb';
 
 export async function getAllCompetences() {
 	return await prisma.competence.findMany();

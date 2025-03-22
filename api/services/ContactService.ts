@@ -1,4 +1,4 @@
-import prisma from '../../db/PrismaDb';
+import prisma from '../db/PrismaDb';
 
 export async function getAllContacts() {
 	return await prisma.contact.findMany();

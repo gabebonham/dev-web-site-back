@@ -1,5 +1,5 @@
-import Message from '../models/MessageModel';
-import prisma from '../../db/PrismaDb';
+import Message from '../messages/models/MessageModel';
+import prisma from '../db/PrismaDb';
 
 export async function getAllMessages() {
 	return await prisma.message.findMany();

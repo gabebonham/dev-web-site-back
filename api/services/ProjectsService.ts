@@ -1,5 +1,5 @@
-import Project from '../models/ProjectModel';
-import prisma from '../../db/PrismaDb';
+import Project from './models/ProjectModel';
+import prisma from '../db/PrismaDb';
 
 export async function getAllProjects() {
 	return await prisma.project.findMany();

@@ -1,5 +1,5 @@
-import Blog from '../models/BlogModel';
-import prisma from '../../db/PrismaDb';
+import Blog from '../blogs/models/BlogModel';
+import prisma from '../db/PrismaDb';
 
 export async function getAllBlogs() {
 	return await prisma.blog.findMany();

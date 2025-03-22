@@ -1,10 +1,43 @@
-// vercel.js (Entry point for Vercel)
 import express, { Express, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import {
+	getAllProjects,
+	getProjectById,
+	createProject,
+	updateProject,
+	deleteProjectById,
+} from './services/ProjectsService';
+import {
+	getAllBlogs,
+	getBlogById,
+	createBlog,
+	updateBlog,
+	deleteBlogById,
+} from './services/BlogsService';
+import {
+	getAllContacts,
+	getContactById,
+	createContact,
+	deleteContactById,
+} from './services/ContactService';
+import {
+	getAllCompetences,
+	getCompetenceById,
+	createCompetence,
+	deleteCompetenceById,
+} from './services/CompetencesService';
+import {
+	getAllMessages,
+	getMessageById,
+	storeMessage,
+	deleteMessageById,
+	updateMessage,
+} from './services/MessagesService';
+import { getAbout, updateAbout } from './services/AboutService';
 import { setHeaders } from './lib/HeadersSetter';
-import authenticateFacade from './authFacade';
+import { authenticate, login } from './services/auth';
 
 // Load environment variables
 dotenv.config();
@@ -31,226 +64,215 @@ app.use(
 	}),
 );
 
-// Handle all routes and methods using app.all
-app.all('*', async (req: Request, res: Response) => {
-	try {
-		const { method, url } = req;
-
-		// Projects routes
-		if (url.startsWith('/api/projects')) {
-			const {
-				getAllProjectsController,
-				getProjectByIdController,
-				createProjectController,
-				updateProjectController,
-				deleteProjectByIdController,
-			} = await import(
-				'./projects/controllers/ProjectsController'
-			);
-			if (method === 'GET' && url === '/api/projects') {
-				await getAllProjectsController(req, res);
-			} else if (
-				method === 'GET' &&
-				url.startsWith('/api/projects/')
-			) {
-				await getProjectByIdController(req, res);
-			} else if (
-				method === 'POST' &&
-				url === '/api/projects'
-			) {
-				authenticateFacade(req, res, () => {
-					createProjectController(req, res);
-				});
-			} else if (
-				method === 'PUT' &&
-				url.startsWith('/api/projects/')
-			) {
-				authenticateFacade(req, res, () => {
-					updateProjectController(req, res);
-				});
-			} else if (
-				method === 'DELETE' &&
-				url.startsWith('/api/projects/')
-			) {
-				authenticateFacade(req, res, () => {
-					deleteProjectByIdController(req, res);
-				});
-			} else {
-				res.status(405).json({
-					message: 'Method not allowed',
-				});
-			}
-		}
-		// Blogs routes
-		else if (url.startsWith('/api/blogs')) {
-			const {
-				getAllBlogsController,
-				getBlogByIdController,
-				createBlogController,
-				updateBlogController,
-				deleteBlogByIdController,
-			} = await import('./blogs/controllers/BlogsController');
-			if (method === 'GET' && url === '/api/blogs') {
-				await getAllBlogsController(req, res);
-			} else if (
-				method === 'GET' &&
-				url.startsWith('/api/blogs/')
-			) {
-				await getBlogByIdController(req, res);
-			} else if (method === 'POST' && url === '/api/blogs') {
-				authenticateFacade(req, res, () => {
-					createBlogController(req, res);
-				});
-			} else if (
-				method === 'PUT' &&
-				url.startsWith('/api/blogs/')
-			) {
-				authenticateFacade(req, res, () => {
-					updateBlogController(req, res);
-				});
-			} else if (
-				method === 'DELETE' &&
-				url.startsWith('/api/blogs/')
-			) {
-				authenticateFacade(req, res, () => {
-					deleteBlogByIdController(req, res);
-				});
-			} else {
-				res.status(405).json({
-					message: 'Method not allowed',
-				});
-			}
-		}
-		// Contacts routes
-		else if (url.startsWith('/api/contacts')) {
-			const {
-				getAllContactsController,
-				getContactByIdController,
-				createContactController,
-				deleteContactByIdController,
-			} = await import(
-				'./contacts/controllers/ContactControllers'
-			);
-			if (method === 'GET' && url === '/api/contacts') {
-				await getAllContactsController(req, res);
-			} else if (
-				method === 'GET' &&
-				url.startsWith('/api/contacts/')
-			) {
-				await getContactByIdController(req, res);
-			} else if (
-				method === 'POST' &&
-				url === '/api/contacts'
-			) {
-				authenticateFacade(req, res, () => {
-					createContactController(req, res);
-				});
-			} else if (
-				method === 'DELETE' &&
-				url.startsWith('/api/contacts/')
-			) {
-				authenticateFacade(req, res, () => {
-					deleteContactByIdController(req, res);
-				});
-			} else {
-				res.status(405).json({
-					message: 'Method not allowed',
-				});
-			}
-		}
-		// Competences routes
-		else if (url.startsWith('/api/competences')) {
-			const {
-				getAllCompetencesController,
-				getCompetenceByIdController,
-				createCompetenceController,
-				deleteCompetenceByIdController,
-			} = await import(
-				'./competences/controllers/CompetencesController'
-			);
-			if (method === 'GET' && url === '/api/competences') {
-				await getAllCompetencesController(req, res);
-			} else if (
-				method === 'GET' &&
-				url.startsWith('/api/competences/')
-			) {
-				await getCompetenceByIdController(req, res);
-			} else if (
-				method === 'POST' &&
-				url === '/api/competences'
-			) {
-				authenticateFacade(req, res, () => {
-					createCompetenceController(req, res);
-				});
-			} else if (
-				method === 'DELETE' &&
-				url.startsWith('/api/competences/')
-			) {
-				authenticateFacade(req, res, () => {
-					deleteCompetenceByIdController(
-						req,
-						res,
-					);
-				});
-			} else {
-				res.status(405).json({
-					message: 'Method not allowed',
-				});
-			}
-		}
-		// Messages routes
-		else if (url.startsWith('/api/messages')) {
-			const {
-				getAllMessagesController,
-				getMessageByIdController,
-				storeMessageController,
-				deleteMessageByIdController,
-			} = await import(
-				'./messages/controller/MessageController'
-			);
-			if (method === 'GET' && url === '/api/messages') {
-				await getAllMessagesController(req, res);
-			} else if (
-				method === 'GET' &&
-				url.startsWith('/api/messages/')
-			) {
-				await getMessageByIdController(req, res);
-			} else if (
-				method === 'POST' &&
-				url === '/api/messages'
-			) {
-				await storeMessageController(req, res);
-			} else if (
-				method === 'DELETE' &&
-				url.startsWith('/api/messages/')
-			) {
-				authenticateFacade(req, res, () => {
-					deleteMessageByIdController(req, res);
-				});
-			} else {
-				res.status(405).json({
-					message: 'Method not allowed',
-				});
-			}
-		}
-		// Login route
-		else if (url === '/login' && method === 'POST') {
-			// Handle login logic here
-			res.status(200).json({ message: 'Login successful' });
-		}
-		// Test route
-		else if (url === '/toggle' && method === 'GET') {
-			res.sendStatus(200);
-		}
-		// Unknown route
-		else {
-			res.status(404).json({ message: 'Route not found' });
-		}
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ message: 'Internal server error' });
-	}
+// Login route
+app.post('/login', async (req: Request, res: Response) => {
+	await login(req, res);
 });
 
-// Export the app for Vercel
+// Projects routes
+app.get('/api/projects', async (req: Request, res: Response) => {
+	const projects = await getAllProjects();
+	res.json(projects);
+});
+
+app.get('/api/projects/:id', async (req: Request, res: Response) => {
+	const id = parseInt(req.params.id);
+	const project = await getProjectById(id);
+	res.json(project);
+});
+
+app.post('/api/projects', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await createProject(req.body);
+	res.status(201).json({ message: 'Project created' });
+});
+
+app.put('/api/projects/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await updateProject(req.body);
+	res.status(200).json({ message: 'Project updated' });
+});
+
+app.delete('/api/projects/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	const id = parseInt(req.params.id);
+	await deleteProjectById(id);
+	res.status(200).json({ message: 'Project deleted' });
+});
+
+// Blogs routes
+app.get('/api/blogs', async (req: Request, res: Response) => {
+	const blogs = await getAllBlogs();
+	res.json(blogs);
+});
+
+app.get('/api/blogs/:id', async (req: Request, res: Response) => {
+	const id = parseInt(req.params.id);
+	const blog = await getBlogById(id);
+	res.json(blog);
+});
+
+app.post('/api/blogs', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await createBlog(req.body);
+	res.status(201).json({ message: 'Blog created' });
+});
+
+app.put('/api/blogs/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await updateBlog(req.body);
+	res.status(200).json({ message: 'Blog updated' });
+});
+
+app.delete('/api/blogs/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	const id = parseInt(req.params.id);
+	await deleteBlogById(id);
+	res.status(200).json({ message: 'Blog deleted' });
+});
+
+// Contacts routes
+app.get('/api/contacts', async (req: Request, res: Response) => {
+	const contacts = await getAllContacts();
+	res.json(contacts);
+});
+
+app.get('/api/contacts/:id', async (req: Request, res: Response) => {
+	const id = parseInt(req.params.id);
+	const contact = await getContactById(id);
+	res.json(contact);
+});
+
+app.post('/api/contacts', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await createContact(req.body);
+	res.status(201).json({ message: 'Contact created' });
+});
+
+app.delete('/api/contacts/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	const id = parseInt(req.params.id);
+	await deleteContactById(id);
+	res.status(200).json({ message: 'Contact deleted' });
+});
+
+// Competences routes
+app.get('/api/competences', async (req: Request, res: Response) => {
+	const competences = await getAllCompetences();
+	res.json(competences);
+});
+
+app.get('/api/competences/:id', async (req: Request, res: Response) => {
+	const id = parseInt(req.params.id);
+	const competence = await getCompetenceById(id);
+	res.json(competence);
+});
+
+app.post('/api/competences', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await createCompetence(req.body);
+	res.status(201).json({ message: 'Competence created' });
+});
+
+app.delete('/api/competences/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	const id = parseInt(req.params.id);
+	await deleteCompetenceById(id);
+	res.status(200).json({ message: 'Competence deleted' });
+});
+
+// Messages routes
+app.get('/api/messages', async (req: Request, res: Response) => {
+	const messages = await getAllMessages();
+	res.json(messages);
+});
+
+app.get('/api/messages/:id', async (req: Request, res: Response) => {
+	const id = parseInt(req.params.id);
+	const message = await getMessageById(id);
+	res.json(message);
+});
+
+app.post('/api/messages', async (req: Request, res: Response) => {
+	await storeMessage(req.body);
+	res.status(201).json({ message: 'Message stored' });
+});
+
+app.delete('/api/messages/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	const id = parseInt(req.params.id);
+	await deleteMessageById(id);
+	res.status(200).json({ message: 'Message deleted' });
+});
+
+app.put('/api/messages/:id', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	const id = parseInt(req.params.id);
+	await updateMessage(id);
+	res.status(200).json({ message: 'Message updated' });
+});
+
+// About route
+app.get('/api/about', async (req: Request, res: Response) => {
+	const about = await getAbout();
+	res.json(about);
+});
+
+app.put('/api/about', async (req: Request, res: Response) => {
+	const auth = await authenticate(req);
+	if (!auth) {
+		await res.status(401).json({ message: 'Unauthorized' });
+	}
+	await updateAbout(req.body);
+	res.status(200).json({ message: 'About updated' });
+});
+
+// Test route
+app.get('/toggle', (req: Request, res: Response) => {
+	res.sendStatus(200);
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '::';
+app.listen(3000, '::', () => {
+	console.log(`Server is running`);
+});
+
 export default app;
