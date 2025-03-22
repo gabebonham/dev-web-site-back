@@ -1,4 +1,4 @@
-export function setHeaders(req, res) {
+export function setHeaders(req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', "https://www.grote.com.br"); // Frontend domain
 	res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow cookies (credentials)
 	res.setHeader(
@@ -10,4 +10,5 @@ export function setHeaders(req, res) {
 		'Content-Type, Access-Control-Allow-Headers, Authorization, cookie, Set-Cookie',
 	);
 	res.setHeader('Accept', 'application/json');
+	next();
 }
