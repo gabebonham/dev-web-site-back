@@ -1,4 +1,3 @@
-import Blog from '../blogs/models/BlogModel';
 import prisma from '../db/PrismaDb';
 
 export async function getAllBlogs() {
@@ -11,7 +10,7 @@ export async function getBlogById(id: number) {
 	});
 }
 
-export async function createBlog(blog: Blog) {
+export async function createBlog(blog) {
 	console.log('crate blog');
 	await prisma.blog.create({
 		data: {
@@ -22,7 +21,7 @@ export async function createBlog(blog: Blog) {
 	});
 }
 
-export async function updateBlog(blog: Blog) {
+export async function updateBlog(blog) {
 	console.log(blog);
 	await prisma.blog.update({
 		where: {

@@ -1,4 +1,3 @@
-import Competence from '../competences/models/CompetenceModel';
 import prisma from '../db/PrismaDb';
 
 export async function getAllCompetences() {
@@ -9,7 +8,7 @@ export async function getCompetenceById(id) {
 	return await prisma.competence.findUnique({ where: { id: id } });
 }
 
-export async function createCompetence(competence: Competence) {
+export async function createCompetence(competence) {
 	console.log('CRIADO');
 	await prisma.competence.create({
 		data: {

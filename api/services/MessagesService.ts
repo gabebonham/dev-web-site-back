@@ -1,4 +1,3 @@
-import Message from '../messages/models/MessageModel';
 import prisma from '../db/PrismaDb';
 
 export async function getAllMessages() {
@@ -24,7 +23,7 @@ export async function deleteMessageById(id) {
 }
 export async function updateMessage(id) {
 	console.log(id);
-	const message = (await getMessageById(id)) as Message;
+	const message = await getMessageById(id);
 	message.isNew = false;
 	await prisma.message.update({
 		where: { id: id },

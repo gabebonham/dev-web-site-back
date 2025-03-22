@@ -1,4 +1,3 @@
-import Project from './models/ProjectModel';
 import prisma from '../db/PrismaDb';
 
 export async function getAllProjects() {
