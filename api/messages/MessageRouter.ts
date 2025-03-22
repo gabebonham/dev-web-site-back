@@ -6,26 +6,61 @@ import {
 	storeMessageController,
 	updateMessageController,
 } from './controller/MessageController';
-import authenticatFacade from '../authFacade';
-import { setHeaders } from '../lib/HeadersSetter';
 import authenticateFacade from '../authFacade';
 
 const router = Router();
 
-router.get('', async (req, res, next) => {
-	getAllMessagesController(req, res);
+// Handle all routes and methods using router.all
+router.all('*', async (req, res, next) => {
+	try {
+		// Extract the HTTP method and URL path
+		const { method, url } = req;
+
+		// Handle GET requests
+		if (method === 'GET') {
+			if (url === '/messages') {
+				// GET all messages
+				await getAllMessagesController(req, res);
+			} else if (url.startsWith('/messages/')) {
+				// GET message by ID
+				await getMessageByIdController(req, res);
+			} else {
+				// Unknown route
+				res.status(404).json({
+					message: 'Route not found',
+				});
+			}
+		}
+		// Handle POST requests
+		else if (method === 'POST' && url === '/messages') {
+			// Authenticate and store a new message
+			authenticateFacade(req, res, () => {
+				storeMessageController(req, res);
+			});
+		}
+		// Handle PUT requests
+		else if (method === 'PUT' && url.startsWith('/messages/')) {
+			// Authenticate and update message
+			authenticateFacade(req, res, () => {
+				updateMessageController(req, res);
+			});
+		}
+		// Handle DELETE requests
+		else if (method === 'DELETE' && url.startsWith('/messages/')) {
+			// Authenticate and delete message
+			authenticateFacade(req, res, () => {
+				deleteMessageByIdController(req, res);
+			});
+		}
+		// Handle unsupported methods or routes
+		else {
+			res.status(405).json({ message: 'Method not allowed' });
+		}
+	} catch (error) {
+		// Handle errors
+		console.error(error);
+		res.status(500).json({ message: 'Internal server error' });
+	}
 });
-router.get('/:id', async (req, res, next) => {
-	getMessageByIdController(req, res);
-});
-router.post('', async (req, res, next) => {
-	storeMessageController(req, res);
-});
-router.put('/:id', async (req, res, next) => {
-	authenticateFacade(req, res, next) && updateMessageController(req, res);
-});
-router.delete('/:id', async (req, res, next) => {
-	authenticateFacade(req, res, next) &&
-		deleteMessageByIdController(req, res);
-});
+
 export default router;
