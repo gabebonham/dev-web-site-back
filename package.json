@@ -1,13 +1,7 @@
 {
 	"name": "dev-web-site-back",
 	"version": "1.0.0",
-	"description": "",
 	"main": "api/index.js",
-	"private": false,
-	"packageManager": "pnpm@9.13.0",
-	"engines": {
-		"node": "22.x"
-	},
 	"scripts": {
 		"build": "rm -rf dist && npx tsc --build",
 		"start": "node dist/index.js",
@@ -19,8 +13,6 @@
 	"license": "ISC",
 	"dependencies": {
 		"@neondatabase/serverless": "^0.10.4",
-		"@prisma/adapter-neon": "^6.0.1",
-		"@prisma/client": "^6.5.0",
 		"@types/express-serve-static-core": "^5.0.2",
 		"bcrypt": "^5.1.1",
 		"cookie": "^1.0.2",
@@ -42,7 +34,6 @@
 		"cookie-parser": "^1.4.7",
 		"express": "^4.21.1",
 		"nodemon": "^3.1.7",
-		"prisma": "^6.0.0",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.7.2"
 	}
