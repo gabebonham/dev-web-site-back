@@ -11,7 +11,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "rm -rf dist .next node_modules pnpm-lock.yaml && pnpm install --no-frozen-lockfile && npx tsc --build",
-		"start": "nodemon dist/index.js"
+		"start": "npx nodemon api/index.ts"
 	},
 	"keywords": [],
 	"author": "",
