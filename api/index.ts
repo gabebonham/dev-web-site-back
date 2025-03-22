@@ -52,7 +52,7 @@ app.use(setHeaders); // Apply headers middleware to all routes
 // CORS configuration
 // app.use(
 // 	cors({
-// 		origin: process.env.FRONTEND_URL, // Allow requests from the frontend URL
+// 		origin: "https://www.grote.com.br", // Allow requests from the frontend URL
 // 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'], // Allowed HTTP methods
 // 		allowedHeaders: [
 // 			'Content-Type',
