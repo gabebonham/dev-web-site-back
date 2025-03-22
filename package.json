@@ -9,10 +9,10 @@
 		"node": "20.x"
 	},
 	"scripts": {
+		"build": "rm -rf api && npx tsc --build",
+		"start": "node api/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "pnpm i prisma && npx prisma && npx prisma init && pnpm i @prisma/client && npx prisma generate && rm -rf dist .next node_modules pnpm-lock.yaml && pnpm install --no-frozen-lockfile && npx tsc --build",
-		"start": "nodemon api/index.ts",
-		"postinstall": "npx prisma generate"
+		"vercel-build": "rm -rf api && npx prisma generate && npx prisma migrate deploy && npx tsc --build"
 	},
 	"keywords": [],
 	"author": "",
