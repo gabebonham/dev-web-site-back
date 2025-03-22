@@ -50,19 +50,19 @@ app.use(express.json());
 app.use(setHeaders); // Apply headers middleware to all routes
 
 // CORS configuration
-app.use(
-	cors({
-		origin: process.env.FRONTEND_URL, // Allow requests from the frontend URL
-		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'], // Allowed HTTP methods
-		allowedHeaders: [
-			'Content-Type',
-			'Authorization',
-			'cookie',
-			'Set-Cookie',
-		], // Allowed headers
-		credentials: true, // Allow credentials (cookies, authorization headers)
-	}),
-);
+// app.use(
+// 	cors({
+// 		origin: process.env.FRONTEND_URL, // Allow requests from the frontend URL
+// 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'], // Allowed HTTP methods
+// 		allowedHeaders: [
+// 			'Content-Type',
+// 			'Authorization',
+// 			'cookie',
+// 			'Set-Cookie',
+// 		], // Allowed headers
+// 		credentials: true, // Allow credentials (cookies, authorization headers)
+// 	}),
+// );
 
 // Login route
 app.post('/login', async (req: Request, res: Response) => {
@@ -250,6 +250,7 @@ app.put('/api/messages/:id', async (req: Request, res: Response) => {
 
 // About route
 app.get('/api/about', async (req: Request, res: Response) => {
+	console.log('lol');
 	const about = await getAbout();
 	res.json(about);
 });
@@ -268,11 +269,8 @@ app.get('/toggle', (req: Request, res: Response) => {
 	res.sendStatus(200);
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '::';
 app.listen(3000, () => {
 	console.log(`Server is running`);
 });
 
-module.exports = app;
+export default app;

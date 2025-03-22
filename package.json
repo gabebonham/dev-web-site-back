@@ -11,7 +11,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "pnpm i prisma && npx prisma && npx prisma init && pnpm i @prisma/client && npx prisma generate && rm -rf dist .next node_modules pnpm-lock.yaml && pnpm install --no-frozen-lockfile && npx tsc --build",
-		"start": "ts-node api/index.ts", "postinstall": "npx prisma generate"
+		"start": "nodemon api/index.ts",
+		"postinstall": "npx prisma generate"
 	},
 	"keywords": [],
 	"author": "",
@@ -19,7 +20,7 @@
 	"dependencies": {
 		"@neondatabase/serverless": "^0.10.4",
 		"@prisma/adapter-neon": "^6.0.1",
-		"@prisma/client": "^6.0.1",
+		"@prisma/client": "^6.5.0",
 		"@types/express-serve-static-core": "^5.0.2",
 		"bcrypt": "^5.1.1",
 		"cookie": "^1.0.2",
@@ -30,7 +31,7 @@
 		"jose": "^5.9.6",
 		"jsonwebtoken": "^9.0.2",
 		"pg": "^8.13.1",
-		"prisma": "^6.0.1",
+		"prisma": "^6.5.0",
 		"ws": "^8.18.0"
 	},
 	"devDependencies": {

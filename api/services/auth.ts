@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { decrypt, encrypt, hash } from '../lib/JWT';
 import bcrypt from 'bcrypt';
-import prisma from '../db/PrismaDb';
-
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 // Login function
 export async function login(req: Request, res: Response) {
 	const user = req.body;

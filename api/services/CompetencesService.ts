@@ -1,5 +1,5 @@
-import prisma from '../db/PrismaDb';
-
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 export async function getAllCompetences() {
 	return await prisma.competence.findMany();
 }
