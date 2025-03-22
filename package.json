@@ -12,7 +12,7 @@
 		"build": "rm -rf dist && npx tsc --build",
 		"start": "node dist/index.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"vercel-build": "rm -rf dist && npx prisma generate && npx prisma migrate deploy && npx tsc --build api/index.ts"
+		"vercel-build": "rm -rf dist && npx prisma generate && npx prisma migrate deploy && npx tsc --build "
 	},
 	"keywords": [],
 	"author": "",
