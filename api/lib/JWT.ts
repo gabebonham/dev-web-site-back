@@ -10,7 +10,7 @@ interface JWTPayload {
 }
 
 // Ensure the JWT key is defined
-const JWT_KEY = process.env.JWT_KEY;
+const JWT_KEY = "grote";
 if (!JWT_KEY) {
 	throw new Error('JWT_KEY environment variable is not defined');
 }
