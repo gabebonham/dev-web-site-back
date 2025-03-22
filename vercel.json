@@ -6,7 +6,7 @@
       "use": "@vercel/node",
       "config": {
         "installCommand": "npm install --save-dev prisma && npm install",
-        "buildCommand": "npx prisma generate && pnpm run build"
+        "buildCommand": "rm -rf prisma && npx prisma generate && pnpm run build"
       }
     }
   ],
