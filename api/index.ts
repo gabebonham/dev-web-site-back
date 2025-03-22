@@ -271,8 +271,8 @@ app.get('/toggle', (req: Request, res: Response) => {
 // Start the server
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '::';
-app.listen(3000, '::', () => {
+app.listen(3000, () => {
 	console.log(`Server is running`);
 });
 
-module.exports =  app;
+module.exports = app;

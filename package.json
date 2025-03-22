@@ -6,11 +6,11 @@
 	"private": false,
 	"packageManager": "pnpm@9.13.0",
 	"engines": {
-		"node": "18.x"
+		"node": "20.x"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "  npx tsc --build",
+		"build": "rm -rf dist .next node_modules pnpm-lock.yaml && pnpm install --no-frozen-lockfile && pnpm prisma generate && npx tsc --build",
 		"start": "node dist/index.js"
 	},
 	"keywords": [],
